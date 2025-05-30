@@ -134,6 +134,7 @@ namespace StarShipSimEditor
 
 
         private void InclanationScroll_Scroll(object sender, ScrollEventArgs e) => InclanationVal.Text = InclanationScroll.Value.ToString();
+        private void TiltScrollBar_Scroll(object sender, ScrollEventArgs e) => TiltBox.Text = TiltScrollBar.Value.ToString();
 
         private void SysName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -151,7 +152,13 @@ namespace StarShipSimEditor
             MajorAxisBox.Text = readData(reader, ColumnSemiMajorAxis);
             MinorAxisBox.Text = readData(reader, ColumnSemiMinorAxis);
             InclanationScroll.Value = Convert.ToInt32(readData(reader, ColumnInclination));
+            InclanationVal.Text = InclanationScroll.Value.ToString();
             OrbitalScroll.Value = Convert.ToInt32(readData(reader, ColumnOrbitPosition));
+            OrbitalPosVal.Text = OrbitalScroll.Value.ToString();
+            PlanetTypeBox.Text = readData(reader,ColumnPlanetType);
+            RadiusBx.Text = readData(reader, ColumnRadius);
+            MassBx.Text = readData(reader, ColumnMass);
+            TiltBox.Text = readData(reader, ColumnTilt);
             if (readData(reader, ColumnAtmosphere) == "1")
             { AtmosCheckBox.Checked = true; }
             else
@@ -222,14 +229,14 @@ namespace StarShipSimEditor
 
             if (sysobID == -1)
             {
-                
+
 
 
                 command.CommandText = $@"
 insert into CelestialObjects
-(ID,{ColumnName_L2},{ColumnX},{ColumnY},{ColumnZ},{ColumnSemiMajorAxis},{ColumnSemiMinorAxis},{ColumnInclination},{ColumnOrbitPosition},'{ColumnAtmosphere}',{ColumnAtmosphereOpacity},{ColumnAtmosphereHue},{ColumnAtmosphereTemp},{ColumnHydrogen},{ColumnHelium},{ColumnMethane},{ColumnOther},'{ColumnRing}',{ColumnRingSeed},{ColumnName_L0},{ColumnName_L1},{ColumnName_L3},{ColumnFlavourText})
+(ID,{ColumnName_L2},{ColumnX},{ColumnY},{ColumnZ},{ColumnSemiMajorAxis},{ColumnSemiMinorAxis},{ColumnInclination},{ColumnOrbitPosition},{ColumnPlanetType},{ColumnRadius},{ColumnMass},{ColumnTilt},'{ColumnAtmosphere}',{ColumnAtmosphereOpacity},{ColumnAtmosphereHue},{ColumnAtmosphereTemp},{ColumnHydrogen},{ColumnHelium},{ColumnMethane},{ColumnOther},'{ColumnRing}',{ColumnRingSeed},{ColumnName_L0},{ColumnName_L1},{ColumnName_L3},{ColumnFlavourText})
 values
-(IFNULL((Select MAX(ID) From CelestialObjects),0) + 1,'{SysName.Text}',{GalaxyXCord.Text},{GalaxyYCord.Text},{GalaxyZCord.Text},{MajorAxisBox.Text},{MinorAxisBox.Text},{InclanationScroll.Value},{OrbitalScroll.Value},{atmosval},{AtmosOpacBox.Text},{AtmosHue.Text},{AtmosTemp.Text},{HydrogenBox.Text},{HeliumBox.Text},{MethaneBox.Text},{OtherGasBox.Text},{ringval},{RingSeedBox.Text},'{StarClass.SelectedItem}','{SysObJType.SelectedItem}','{ObjFriendlyName.Text}','{DescriptionBox.Text}')
+(IFNULL((Select MAX(ID) From CelestialObjects),0) + 1,'{SysName.Text}',{GalaxyXCord.Text},{GalaxyYCord.Text},{GalaxyZCord.Text},{MajorAxisBox.Text},{MinorAxisBox.Text},{InclanationScroll.Value},{OrbitalScroll.Value},{PlanetTypeBox.Text},{RadiusBx.Text},{MassBx.Text},{TiltBox.Text},{atmosval},{AtmosOpacBox.Text},{AtmosHue.Text},{AtmosTemp.Text},{HydrogenBox.Text},{HeliumBox.Text},{MethaneBox.Text},{OtherGasBox.Text},{ringval},{RingSeedBox.Text},'{StarClass.SelectedItem}','{SysObJType.SelectedItem}','{ObjFriendlyName.Text}','{DescriptionBox.Text}')
 ;
 ";
             }
@@ -246,6 +253,10 @@ set
 {ColumnSemiMinorAxis} = {MinorAxisBox.Text},
 {ColumnInclination} = {InclanationScroll.Value},
 {ColumnOrbitPosition} = {OrbitalScroll.Value},
+{ColumnPlanetType} = {PlanetTypeBox.Text},
+{ColumnRadius} = {RadiusBx.Text},
+{ColumnMass} = {MassBx.Text},
+{ColumnTilt} = {TiltBox.Text},
 '{ColumnAtmosphere}' = {atmosval},
 {ColumnAtmosphereOpacity} = {AtmosOpacBox.Text},
 {ColumnAtmosphereHue} = {AtmosHue.Text},
@@ -289,6 +300,8 @@ where ID = {sysobID}
         {
             sysobID = -1;
         }
+
+
     }
 }
 
