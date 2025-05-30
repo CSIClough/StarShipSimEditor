@@ -73,12 +73,12 @@
             this.label18 = new System.Windows.Forms.Label();
             this.RingChkBox = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.RingSpeedBox = new System.Windows.Forms.TextBox();
+            this.RingSeedBox = new System.Windows.Forms.TextBox();
             this.ObjFriendlyName = new System.Windows.Forms.TextBox();
             this.DescriptionBox = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.NewBtn = new System.Windows.Forms.Button();
+            this.SaveBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // GetDBPath
@@ -306,8 +306,6 @@
             // StarBox
             // 
             this.StarBox.AutoSize = true;
-            this.StarBox.Checked = true;
-            this.StarBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.StarBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.StarBox.Location = new System.Drawing.Point(27, 142);
             this.StarBox.Name = "StarBox";
@@ -494,13 +492,13 @@
             this.label19.TabIndex = 45;
             this.label19.Text = "Ring Seed";
             // 
-            // RingSpeedBox
+            // RingSeedBox
             // 
-            this.RingSpeedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.RingSpeedBox.Location = new System.Drawing.Point(1185, 226);
-            this.RingSpeedBox.Name = "RingSpeedBox";
-            this.RingSpeedBox.Size = new System.Drawing.Size(100, 30);
-            this.RingSpeedBox.TabIndex = 44;
+            this.RingSeedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.RingSeedBox.Location = new System.Drawing.Point(1185, 226);
+            this.RingSeedBox.Name = "RingSeedBox";
+            this.RingSeedBox.Size = new System.Drawing.Size(100, 30);
+            this.RingSeedBox.TabIndex = 44;
             // 
             // ObjFriendlyName
             // 
@@ -529,25 +527,27 @@
             this.label20.TabIndex = 48;
             this.label20.Text = "Description";
             // 
-            // button1
+            // NewBtn
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(5, 79);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(194, 32);
-            this.button1.TabIndex = 49;
-            this.button1.Text = "New Object";
-            this.button1.UseVisualStyleBackColor = true;
+            this.NewBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.NewBtn.Location = new System.Drawing.Point(5, 79);
+            this.NewBtn.Name = "NewBtn";
+            this.NewBtn.Size = new System.Drawing.Size(194, 32);
+            this.NewBtn.TabIndex = 49;
+            this.NewBtn.Text = "New Object";
+            this.NewBtn.UseVisualStyleBackColor = true;
+            this.NewBtn.Click += new System.EventHandler(this.NewBtn_Click);
             // 
-            // button2
+            // SaveBtn
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button2.Location = new System.Drawing.Point(224, 79);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(194, 32);
-            this.button2.TabIndex = 50;
-            this.button2.Text = "Save Changes";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SaveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.SaveBtn.Location = new System.Drawing.Point(224, 79);
+            this.SaveBtn.Name = "SaveBtn";
+            this.SaveBtn.Size = new System.Drawing.Size(194, 32);
+            this.SaveBtn.TabIndex = 50;
+            this.SaveBtn.Text = "Save Changes";
+            this.SaveBtn.UseVisualStyleBackColor = true;
+            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // Form1
             // 
@@ -555,13 +555,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1338, 820);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SaveBtn);
+            this.Controls.Add(this.NewBtn);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.DescriptionBox);
             this.Controls.Add(this.ObjFriendlyName);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.RingSpeedBox);
+            this.Controls.Add(this.RingSeedBox);
             this.Controls.Add(this.RingChkBox);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.SysObJType);
@@ -661,12 +661,12 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox RingChkBox;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox RingSpeedBox;
+        private System.Windows.Forms.TextBox RingSeedBox;
         private System.Windows.Forms.TextBox ObjFriendlyName;
         private System.Windows.Forms.TextBox DescriptionBox;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button NewBtn;
+        private System.Windows.Forms.Button SaveBtn;
     }
 }
 
