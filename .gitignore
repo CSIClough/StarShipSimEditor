@@ -6,3 +6,6 @@
 /packages
 /StarShipSimEditor/.vs
 /StarShipSimEditor/bin
+/StarShipSimEditor/obj/x64/Debug/StarShipSimEditor.exe
+/StarShipSimEditor/obj/x64/Debug/StarShipSimEditor.pdb
+/StarShipSimEditor/obj/x64/Debug/StarShipSimEditor.csproj.GenerateResource.cache
