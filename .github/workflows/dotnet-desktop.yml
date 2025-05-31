@@ -36,7 +36,7 @@ jobs:
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       #run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-      run: msbuild StarShipSimEditor\StarShipSimEditor.csproj -t:rebuild -verbosity:diag -property:Configuration=$env:Configuration
+      run: msbuild StarShipSimEditor\StarShipSimEditor.csproj -t:rebuild -property:Configuration=$env:Configuration # -verbosity:diag 
       env:
         Configuration: ${{ matrix.configuration }}
 
