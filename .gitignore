@@ -6,9 +6,5 @@
 /packages
 /StarShipSimEditor/.vs
 /StarShipSimEditor/bin
-/StarShipSimEditor/obj/x64/Debug/
-/StarShipSimEditor/obj/x64/Debug/
-/StarShipSimEditor/obj/x64/Debug
-/StarShipSimEditor/obj/Debug/
-/StarShipSimEditor/obj/Release/
-/StarShipSimEditor/obj/publish/
+/StarShipSimEditor/obj
+
