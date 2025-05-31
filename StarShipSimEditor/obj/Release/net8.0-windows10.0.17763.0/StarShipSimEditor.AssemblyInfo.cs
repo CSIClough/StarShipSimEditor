@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StarShipSimEditor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6bcfbc0d26b0e4123ac653c443269d114cbcd164")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f2276437385a458ebb00633ce5640ede38f8955")]
 [assembly: System.Reflection.AssemblyProductAttribute("StarShipSimEditor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StarShipSimEditor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
