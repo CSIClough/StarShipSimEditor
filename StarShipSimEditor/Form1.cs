@@ -111,6 +111,7 @@ namespace StarShipSimEditor
             else
             {
                 MessageBox.Show("No database selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DatabseFileName.Text = "None";
             }
             var conenction = openDatabase();
             SysName.Items.Clear();

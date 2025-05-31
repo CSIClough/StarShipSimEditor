@@ -28,690 +28,733 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.GetDBPath = new System.Windows.Forms.Button();
-            this.DatabaseDiag = new System.Windows.Forms.OpenFileDialog();
-            this.DatabseFileName = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.SysName = new System.Windows.Forms.ComboBox();
-            this.GalaxyXCord = new System.Windows.Forms.TextBox();
-            this.GalaxyYCord = new System.Windows.Forms.TextBox();
-            this.GalaxyZCord = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.MajorAxisBox = new System.Windows.Forms.TextBox();
-            this.MinorAxisBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.OrbitalScroll = new System.Windows.Forms.HScrollBar();
-            this.OrbitalPosVal = new System.Windows.Forms.TextBox();
-            this.InclanationVal = new System.Windows.Forms.TextBox();
-            this.InclanationScroll = new System.Windows.Forms.HScrollBar();
-            this.AtmosCheckBox = new System.Windows.Forms.CheckBox();
-            this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
-            this.AtmosOpacBox = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.StarBox = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.AtmosHue = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.AtmosTemp = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.MethaneBox = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.HeliumBox = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.HydrogenBox = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.OtherGasBox = new System.Windows.Forms.TextBox();
-            this.StarClass = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.SysObJType = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.RingChkBox = new System.Windows.Forms.CheckBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.RingSeedBox = new System.Windows.Forms.TextBox();
-            this.ObjFriendlyName = new System.Windows.Forms.TextBox();
-            this.DescriptionBox = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.NewBtn = new System.Windows.Forms.Button();
-            this.SaveBtn = new System.Windows.Forms.Button();
-            this.PlanetTypeBox = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.TiltBox = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.MassBx = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.RadiusBx = new System.Windows.Forms.TextBox();
-            this.TiltScrollBar = new System.Windows.Forms.HScrollBar();
-            this.SuspendLayout();
+            GetDBPath = new System.Windows.Forms.Button();
+            DatabaseDiag = new System.Windows.Forms.OpenFileDialog();
+            DatabseFileName = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            SysName = new System.Windows.Forms.ComboBox();
+            GalaxyXCord = new System.Windows.Forms.TextBox();
+            GalaxyYCord = new System.Windows.Forms.TextBox();
+            GalaxyZCord = new System.Windows.Forms.TextBox();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            MajorAxisBox = new System.Windows.Forms.TextBox();
+            MinorAxisBox = new System.Windows.Forms.TextBox();
+            label7 = new System.Windows.Forms.Label();
+            label8 = new System.Windows.Forms.Label();
+            OrbitalScroll = new System.Windows.Forms.HScrollBar();
+            OrbitalPosVal = new System.Windows.Forms.TextBox();
+            InclanationVal = new System.Windows.Forms.TextBox();
+            InclanationScroll = new System.Windows.Forms.HScrollBar();
+            AtmosCheckBox = new System.Windows.Forms.CheckBox();
+            sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
+            AtmosOpacBox = new System.Windows.Forms.TextBox();
+            label9 = new System.Windows.Forms.Label();
+            StarBox = new System.Windows.Forms.CheckBox();
+            label10 = new System.Windows.Forms.Label();
+            AtmosHue = new System.Windows.Forms.TextBox();
+            label11 = new System.Windows.Forms.Label();
+            AtmosTemp = new System.Windows.Forms.TextBox();
+            label12 = new System.Windows.Forms.Label();
+            MethaneBox = new System.Windows.Forms.TextBox();
+            label13 = new System.Windows.Forms.Label();
+            HeliumBox = new System.Windows.Forms.TextBox();
+            label14 = new System.Windows.Forms.Label();
+            HydrogenBox = new System.Windows.Forms.TextBox();
+            label15 = new System.Windows.Forms.Label();
+            OtherGasBox = new System.Windows.Forms.TextBox();
+            StarClass = new System.Windows.Forms.ComboBox();
+            label16 = new System.Windows.Forms.Label();
+            SysObJType = new System.Windows.Forms.ComboBox();
+            label17 = new System.Windows.Forms.Label();
+            label18 = new System.Windows.Forms.Label();
+            RingChkBox = new System.Windows.Forms.CheckBox();
+            label19 = new System.Windows.Forms.Label();
+            RingSeedBox = new System.Windows.Forms.TextBox();
+            ObjFriendlyName = new System.Windows.Forms.TextBox();
+            DescriptionBox = new System.Windows.Forms.TextBox();
+            label20 = new System.Windows.Forms.Label();
+            NewBtn = new System.Windows.Forms.Button();
+            SaveBtn = new System.Windows.Forms.Button();
+            PlanetTypeBox = new System.Windows.Forms.ComboBox();
+            label21 = new System.Windows.Forms.Label();
+            label22 = new System.Windows.Forms.Label();
+            TiltBox = new System.Windows.Forms.TextBox();
+            label23 = new System.Windows.Forms.Label();
+            MassBx = new System.Windows.Forms.TextBox();
+            label24 = new System.Windows.Forms.Label();
+            RadiusBx = new System.Windows.Forms.TextBox();
+            TiltScrollBar = new System.Windows.Forms.HScrollBar();
+            label25 = new System.Windows.Forms.Label();
+            SuspendLayout();
             // 
             // GetDBPath
             // 
-            this.GetDBPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.GetDBPath.Location = new System.Drawing.Point(5, 12);
-            this.GetDBPath.Name = "GetDBPath";
-            this.GetDBPath.Size = new System.Drawing.Size(194, 32);
-            this.GetDBPath.TabIndex = 0;
-            this.GetDBPath.Text = "Select Database";
-            this.GetDBPath.UseVisualStyleBackColor = true;
-            this.GetDBPath.Click += new System.EventHandler(this.GetDBPath_Click);
+            GetDBPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            GetDBPath.Location = new System.Drawing.Point(5, 15);
+            GetDBPath.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            GetDBPath.Name = "GetDBPath";
+            GetDBPath.Size = new System.Drawing.Size(194, 40);
+            GetDBPath.TabIndex = 0;
+            GetDBPath.Text = "Select Database";
+            GetDBPath.UseVisualStyleBackColor = true;
+            GetDBPath.Click += GetDBPath_Click;
             // 
             // DatabaseDiag
             // 
-            this.DatabaseDiag.FileName = "openFileDialog1";
+            DatabaseDiag.FileName = "openFileDialog1";
             // 
             // DatabseFileName
             // 
-            this.DatabseFileName.AutoSize = true;
-            this.DatabseFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.DatabseFileName.Location = new System.Drawing.Point(281, 12);
-            this.DatabseFileName.Name = "DatabseFileName";
-            this.DatabseFileName.Size = new System.Drawing.Size(208, 25);
-            this.DatabseFileName.TabIndex = 1;
-            this.DatabseFileName.Text = "No Database Selected";
+            DatabseFileName.AutoSize = true;
+            DatabseFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            DatabseFileName.Location = new System.Drawing.Point(394, 23);
+            DatabseFileName.Name = "DatabseFileName";
+            DatabseFileName.Size = new System.Drawing.Size(208, 25);
+            DatabseFileName.TabIndex = 1;
+            DatabseFileName.Text = "No Database Selected";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(112, 153);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 25);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Object Name";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label1.Location = new System.Drawing.Point(112, 191);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(126, 25);
+            label1.TabIndex = 3;
+            label1.Text = "Object Name";
             // 
             // SysName
             // 
-            this.SysName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.SysName.FormattingEnabled = true;
-            this.SysName.Location = new System.Drawing.Point(265, 150);
-            this.SysName.Name = "SysName";
-            this.SysName.Size = new System.Drawing.Size(314, 33);
-            this.SysName.TabIndex = 4;
-            this.SysName.SelectedIndexChanged += new System.EventHandler(this.SysName_SelectedIndexChanged);
+            SysName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            SysName.FormattingEnabled = true;
+            SysName.Location = new System.Drawing.Point(265, 188);
+            SysName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            SysName.Name = "SysName";
+            SysName.Size = new System.Drawing.Size(314, 33);
+            SysName.TabIndex = 4;
+            SysName.SelectedIndexChanged += SysName_SelectedIndexChanged;
             // 
             // GalaxyXCord
             // 
-            this.GalaxyXCord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.GalaxyXCord.Location = new System.Drawing.Point(15, 226);
-            this.GalaxyXCord.Name = "GalaxyXCord";
-            this.GalaxyXCord.Size = new System.Drawing.Size(100, 30);
-            this.GalaxyXCord.TabIndex = 5;
+            GalaxyXCord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            GalaxyXCord.Location = new System.Drawing.Point(15, 282);
+            GalaxyXCord.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            GalaxyXCord.Name = "GalaxyXCord";
+            GalaxyXCord.Size = new System.Drawing.Size(100, 30);
+            GalaxyXCord.TabIndex = 5;
             // 
             // GalaxyYCord
             // 
-            this.GalaxyYCord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.GalaxyYCord.Location = new System.Drawing.Point(140, 226);
-            this.GalaxyYCord.Name = "GalaxyYCord";
-            this.GalaxyYCord.Size = new System.Drawing.Size(100, 30);
-            this.GalaxyYCord.TabIndex = 6;
+            GalaxyYCord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            GalaxyYCord.Location = new System.Drawing.Point(140, 282);
+            GalaxyYCord.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            GalaxyYCord.Name = "GalaxyYCord";
+            GalaxyYCord.Size = new System.Drawing.Size(100, 30);
+            GalaxyYCord.TabIndex = 6;
             // 
             // GalaxyZCord
             // 
-            this.GalaxyZCord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.GalaxyZCord.Location = new System.Drawing.Point(265, 226);
-            this.GalaxyZCord.Name = "GalaxyZCord";
-            this.GalaxyZCord.Size = new System.Drawing.Size(100, 30);
-            this.GalaxyZCord.TabIndex = 7;
+            GalaxyZCord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            GalaxyZCord.Location = new System.Drawing.Point(265, 282);
+            GalaxyZCord.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            GalaxyZCord.Name = "GalaxyZCord";
+            GalaxyZCord.Size = new System.Drawing.Size(100, 30);
+            GalaxyZCord.TabIndex = 7;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 198);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 25);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Galaxy X";
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label2.Location = new System.Drawing.Point(12, 248);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(92, 25);
+            label2.TabIndex = 8;
+            label2.Text = "Galaxy X";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(137, 198);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 25);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Galaxy Y";
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label3.Location = new System.Drawing.Point(137, 248);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(91, 25);
+            label3.TabIndex = 9;
+            label3.Text = "Galaxy Y";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(262, 198);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 25);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Galaxy Z";
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label4.Location = new System.Drawing.Point(262, 248);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(90, 25);
+            label4.TabIndex = 10;
+            label4.Text = "Galaxy Z";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(12, 272);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 25);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Major Axis";
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label5.Location = new System.Drawing.Point(12, 340);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(104, 25);
+            label5.TabIndex = 11;
+            label5.Text = "Major Axis";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 346);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 25);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Minor Axis";
+            label6.AutoSize = true;
+            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label6.Location = new System.Drawing.Point(12, 432);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(104, 25);
+            label6.TabIndex = 12;
+            label6.Text = "Minor Axis";
             // 
             // MajorAxisBox
             // 
-            this.MajorAxisBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.MajorAxisBox.Location = new System.Drawing.Point(17, 301);
-            this.MajorAxisBox.Name = "MajorAxisBox";
-            this.MajorAxisBox.Size = new System.Drawing.Size(248, 30);
-            this.MajorAxisBox.TabIndex = 13;
+            MajorAxisBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            MajorAxisBox.Location = new System.Drawing.Point(17, 376);
+            MajorAxisBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            MajorAxisBox.Name = "MajorAxisBox";
+            MajorAxisBox.Size = new System.Drawing.Size(248, 30);
+            MajorAxisBox.TabIndex = 13;
             // 
             // MinorAxisBox
             // 
-            this.MinorAxisBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.MinorAxisBox.Location = new System.Drawing.Point(17, 374);
-            this.MinorAxisBox.Name = "MinorAxisBox";
-            this.MinorAxisBox.Size = new System.Drawing.Size(248, 30);
-            this.MinorAxisBox.TabIndex = 14;
+            MinorAxisBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            MinorAxisBox.Location = new System.Drawing.Point(17, 468);
+            MinorAxisBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            MinorAxisBox.Name = "MinorAxisBox";
+            MinorAxisBox.Size = new System.Drawing.Size(248, 30);
+            MinorAxisBox.TabIndex = 14;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(13, 495);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 25);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Inclination";
+            label7.AutoSize = true;
+            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label7.Location = new System.Drawing.Point(13, 619);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(99, 25);
+            label7.TabIndex = 15;
+            label7.Text = "Inclination";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(12, 415);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(143, 25);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Orbital Position";
+            label8.AutoSize = true;
+            label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label8.Location = new System.Drawing.Point(12, 519);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(143, 25);
+            label8.TabIndex = 16;
+            label8.Text = "Orbital Position";
             // 
             // OrbitalScroll
             // 
-            this.OrbitalScroll.Location = new System.Drawing.Point(18, 455);
-            this.OrbitalScroll.Maximum = 360;
-            this.OrbitalScroll.Name = "OrbitalScroll";
-            this.OrbitalScroll.Size = new System.Drawing.Size(390, 21);
-            this.OrbitalScroll.TabIndex = 17;
-            this.OrbitalScroll.Scroll += new System.Windows.Forms.ScrollEventHandler(this.OrbitalScroll_Scroll);
+            OrbitalScroll.Location = new System.Drawing.Point(18, 569);
+            OrbitalScroll.Maximum = 360;
+            OrbitalScroll.Name = "OrbitalScroll";
+            OrbitalScroll.Size = new System.Drawing.Size(390, 21);
+            OrbitalScroll.TabIndex = 17;
+            OrbitalScroll.Scroll += OrbitalScroll_Scroll;
             // 
             // OrbitalPosVal
             // 
-            this.OrbitalPosVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.OrbitalPosVal.Location = new System.Drawing.Point(165, 419);
-            this.OrbitalPosVal.Name = "OrbitalPosVal";
-            this.OrbitalPosVal.Size = new System.Drawing.Size(100, 30);
-            this.OrbitalPosVal.TabIndex = 18;
+            OrbitalPosVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            OrbitalPosVal.Location = new System.Drawing.Point(165, 524);
+            OrbitalPosVal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            OrbitalPosVal.Name = "OrbitalPosVal";
+            OrbitalPosVal.Size = new System.Drawing.Size(100, 30);
+            OrbitalPosVal.TabIndex = 18;
             // 
             // InclanationVal
             // 
-            this.InclanationVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.InclanationVal.Location = new System.Drawing.Point(165, 499);
-            this.InclanationVal.Name = "InclanationVal";
-            this.InclanationVal.Size = new System.Drawing.Size(100, 30);
-            this.InclanationVal.TabIndex = 19;
+            InclanationVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            InclanationVal.Location = new System.Drawing.Point(165, 624);
+            InclanationVal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            InclanationVal.Name = "InclanationVal";
+            InclanationVal.Size = new System.Drawing.Size(100, 30);
+            InclanationVal.TabIndex = 19;
             // 
             // InclanationScroll
             // 
-            this.InclanationScroll.Location = new System.Drawing.Point(17, 535);
-            this.InclanationScroll.Maximum = 360;
-            this.InclanationScroll.Name = "InclanationScroll";
-            this.InclanationScroll.Size = new System.Drawing.Size(390, 21);
-            this.InclanationScroll.TabIndex = 20;
-            this.InclanationScroll.Scroll += new System.Windows.Forms.ScrollEventHandler(this.InclanationScroll_Scroll);
+            InclanationScroll.Location = new System.Drawing.Point(17, 669);
+            InclanationScroll.Maximum = 360;
+            InclanationScroll.Name = "InclanationScroll";
+            InclanationScroll.Size = new System.Drawing.Size(390, 21);
+            InclanationScroll.TabIndex = 20;
+            InclanationScroll.Scroll += InclanationScroll_Scroll;
             // 
             // AtmosCheckBox
             // 
-            this.AtmosCheckBox.AutoSize = true;
-            this.AtmosCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.AtmosCheckBox.Location = new System.Drawing.Point(733, 154);
-            this.AtmosCheckBox.Name = "AtmosCheckBox";
-            this.AtmosCheckBox.Size = new System.Drawing.Size(151, 29);
-            this.AtmosCheckBox.TabIndex = 21;
-            this.AtmosCheckBox.Text = "Atmosphere?";
-            this.AtmosCheckBox.UseVisualStyleBackColor = true;
+            AtmosCheckBox.AutoSize = true;
+            AtmosCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            AtmosCheckBox.Location = new System.Drawing.Point(733, 192);
+            AtmosCheckBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            AtmosCheckBox.Name = "AtmosCheckBox";
+            AtmosCheckBox.Size = new System.Drawing.Size(151, 29);
+            AtmosCheckBox.TabIndex = 21;
+            AtmosCheckBox.Text = "Atmosphere?";
+            AtmosCheckBox.UseVisualStyleBackColor = true;
             // 
             // sqLiteCommand1
             // 
-            this.sqLiteCommand1.CommandText = null;
+            sqLiteCommand1.CommandText = null;
             // 
             // AtmosOpacBox
             // 
-            this.AtmosOpacBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.AtmosOpacBox.Location = new System.Drawing.Point(731, 227);
-            this.AtmosOpacBox.Name = "AtmosOpacBox";
-            this.AtmosOpacBox.Size = new System.Drawing.Size(100, 30);
-            this.AtmosOpacBox.TabIndex = 22;
+            AtmosOpacBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            AtmosOpacBox.Location = new System.Drawing.Point(731, 284);
+            AtmosOpacBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            AtmosOpacBox.Name = "AtmosOpacBox";
+            AtmosOpacBox.Size = new System.Drawing.Size(100, 30);
+            AtmosOpacBox.TabIndex = 22;
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label9.Location = new System.Drawing.Point(729, 199);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(193, 25);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "Atmospheric Opacity";
+            label9.AutoSize = true;
+            label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label9.Location = new System.Drawing.Point(729, 249);
+            label9.Name = "label9";
+            label9.Size = new System.Drawing.Size(193, 25);
+            label9.TabIndex = 23;
+            label9.Text = "Atmospheric Opacity";
             // 
             // StarBox
             // 
-            this.StarBox.AutoSize = true;
-            this.StarBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.StarBox.Location = new System.Drawing.Point(12, 153);
-            this.StarBox.Name = "StarBox";
-            this.StarBox.Size = new System.Drawing.Size(81, 29);
-            this.StarBox.TabIndex = 24;
-            this.StarBox.Text = "Star?";
-            this.StarBox.UseVisualStyleBackColor = true;
-            this.StarBox.CheckedChanged += new System.EventHandler(this.StarBox_CheckedChanged);
+            StarBox.AutoSize = true;
+            StarBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            StarBox.Location = new System.Drawing.Point(12, 191);
+            StarBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            StarBox.Name = "StarBox";
+            StarBox.Size = new System.Drawing.Size(81, 29);
+            StarBox.TabIndex = 24;
+            StarBox.Text = "Star?";
+            StarBox.UseVisualStyleBackColor = true;
+            StarBox.CheckedChanged += StarBox_CheckedChanged;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label10.Location = new System.Drawing.Point(729, 274);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(162, 25);
-            this.label10.TabIndex = 26;
-            this.label10.Text = "Atmospheric Hue";
+            label10.AutoSize = true;
+            label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label10.Location = new System.Drawing.Point(729, 342);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(162, 25);
+            label10.TabIndex = 26;
+            label10.Text = "Atmospheric Hue";
             // 
             // AtmosHue
             // 
-            this.AtmosHue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.AtmosHue.Location = new System.Drawing.Point(731, 302);
-            this.AtmosHue.Name = "AtmosHue";
-            this.AtmosHue.Size = new System.Drawing.Size(100, 30);
-            this.AtmosHue.TabIndex = 25;
+            AtmosHue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            AtmosHue.Location = new System.Drawing.Point(731, 378);
+            AtmosHue.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            AtmosHue.Name = "AtmosHue";
+            AtmosHue.Size = new System.Drawing.Size(100, 30);
+            AtmosHue.TabIndex = 25;
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label11.Location = new System.Drawing.Point(729, 347);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(271, 25);
-            this.label11.TabIndex = 28;
-            this.label11.Text = "Atmospheric Temparature (K)";
+            label11.AutoSize = true;
+            label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label11.Location = new System.Drawing.Point(729, 434);
+            label11.Name = "label11";
+            label11.Size = new System.Drawing.Size(271, 25);
+            label11.TabIndex = 28;
+            label11.Text = "Atmospheric Temparature (K)";
             // 
             // AtmosTemp
             // 
-            this.AtmosTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.AtmosTemp.Location = new System.Drawing.Point(731, 375);
-            this.AtmosTemp.Name = "AtmosTemp";
-            this.AtmosTemp.Size = new System.Drawing.Size(100, 30);
-            this.AtmosTemp.TabIndex = 27;
+            AtmosTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            AtmosTemp.Location = new System.Drawing.Point(731, 469);
+            AtmosTemp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            AtmosTemp.Name = "AtmosTemp";
+            AtmosTemp.Size = new System.Drawing.Size(100, 30);
+            AtmosTemp.TabIndex = 27;
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label12.Location = new System.Drawing.Point(1021, 347);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(112, 25);
-            this.label12.TabIndex = 34;
-            this.label12.Text = "Methane %";
+            label12.AutoSize = true;
+            label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label12.Location = new System.Drawing.Point(1021, 434);
+            label12.Name = "label12";
+            label12.Size = new System.Drawing.Size(112, 25);
+            label12.TabIndex = 34;
+            label12.Text = "Methane %";
             // 
             // MethaneBox
             // 
-            this.MethaneBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.MethaneBox.Location = new System.Drawing.Point(1023, 375);
-            this.MethaneBox.Name = "MethaneBox";
-            this.MethaneBox.Size = new System.Drawing.Size(100, 30);
-            this.MethaneBox.TabIndex = 33;
+            MethaneBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            MethaneBox.Location = new System.Drawing.Point(1023, 469);
+            MethaneBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            MethaneBox.Name = "MethaneBox";
+            MethaneBox.Size = new System.Drawing.Size(100, 30);
+            MethaneBox.TabIndex = 33;
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label13.Location = new System.Drawing.Point(1021, 274);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(95, 25);
-            this.label13.TabIndex = 32;
-            this.label13.Text = "Helium %";
+            label13.AutoSize = true;
+            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label13.Location = new System.Drawing.Point(1021, 342);
+            label13.Name = "label13";
+            label13.Size = new System.Drawing.Size(95, 25);
+            label13.TabIndex = 32;
+            label13.Text = "Helium %";
             // 
             // HeliumBox
             // 
-            this.HeliumBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.HeliumBox.Location = new System.Drawing.Point(1023, 302);
-            this.HeliumBox.Name = "HeliumBox";
-            this.HeliumBox.Size = new System.Drawing.Size(100, 30);
-            this.HeliumBox.TabIndex = 31;
+            HeliumBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            HeliumBox.Location = new System.Drawing.Point(1023, 378);
+            HeliumBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            HeliumBox.Name = "HeliumBox";
+            HeliumBox.Size = new System.Drawing.Size(100, 30);
+            HeliumBox.TabIndex = 31;
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label14.Location = new System.Drawing.Point(1021, 199);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(120, 25);
-            this.label14.TabIndex = 30;
-            this.label14.Text = "Hydrogen %";
+            label14.AutoSize = true;
+            label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label14.Location = new System.Drawing.Point(1021, 249);
+            label14.Name = "label14";
+            label14.Size = new System.Drawing.Size(120, 25);
+            label14.TabIndex = 30;
+            label14.Text = "Hydrogen %";
             // 
             // HydrogenBox
             // 
-            this.HydrogenBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.HydrogenBox.Location = new System.Drawing.Point(1023, 227);
-            this.HydrogenBox.Name = "HydrogenBox";
-            this.HydrogenBox.Size = new System.Drawing.Size(100, 30);
-            this.HydrogenBox.TabIndex = 29;
+            HydrogenBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            HydrogenBox.Location = new System.Drawing.Point(1023, 284);
+            HydrogenBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            HydrogenBox.Name = "HydrogenBox";
+            HydrogenBox.Size = new System.Drawing.Size(100, 30);
+            HydrogenBox.TabIndex = 29;
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label15.Location = new System.Drawing.Point(1018, 420);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(84, 25);
-            this.label15.TabIndex = 36;
-            this.label15.Text = "Other %";
+            label15.AutoSize = true;
+            label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label15.Location = new System.Drawing.Point(1018, 525);
+            label15.Name = "label15";
+            label15.Size = new System.Drawing.Size(84, 25);
+            label15.TabIndex = 36;
+            label15.Text = "Other %";
             // 
             // OtherGasBox
             // 
-            this.OtherGasBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.OtherGasBox.Location = new System.Drawing.Point(1020, 448);
-            this.OtherGasBox.Name = "OtherGasBox";
-            this.OtherGasBox.Size = new System.Drawing.Size(100, 30);
-            this.OtherGasBox.TabIndex = 35;
+            OtherGasBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            OtherGasBox.Location = new System.Drawing.Point(1020, 560);
+            OtherGasBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            OtherGasBox.Name = "OtherGasBox";
+            OtherGasBox.Size = new System.Drawing.Size(100, 30);
+            OtherGasBox.TabIndex = 35;
             // 
             // StarClass
             // 
-            this.StarClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.StarClass.FormattingEnabled = true;
-            this.StarClass.Location = new System.Drawing.Point(229, 704);
-            this.StarClass.Name = "StarClass";
-            this.StarClass.Size = new System.Drawing.Size(321, 33);
-            this.StarClass.TabIndex = 38;
+            StarClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            StarClass.FormattingEnabled = true;
+            StarClass.Location = new System.Drawing.Point(229, 880);
+            StarClass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            StarClass.Name = "StarClass";
+            StarClass.Size = new System.Drawing.Size(321, 33);
+            StarClass.TabIndex = 38;
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(16, 707);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(103, 25);
-            this.label16.TabIndex = 37;
-            this.label16.Text = "Star Class";
+            label16.AutoSize = true;
+            label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label16.Location = new System.Drawing.Point(16, 884);
+            label16.Name = "label16";
+            label16.Size = new System.Drawing.Size(103, 25);
+            label16.TabIndex = 37;
+            label16.Text = "Star Class";
             // 
             // SysObJType
             // 
-            this.SysObJType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.SysObJType.FormattingEnabled = true;
-            this.SysObJType.Location = new System.Drawing.Point(229, 743);
-            this.SysObJType.Name = "SysObJType";
-            this.SysObJType.Size = new System.Drawing.Size(321, 33);
-            this.SysObJType.TabIndex = 40;
+            SysObJType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            SysObJType.FormattingEnabled = true;
+            SysObJType.Location = new System.Drawing.Point(229, 929);
+            SysObJType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            SysObJType.Name = "SysObJType";
+            SysObJType.Size = new System.Drawing.Size(321, 33);
+            SysObJType.TabIndex = 40;
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(16, 746);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(190, 25);
-            this.label17.TabIndex = 39;
-            this.label17.Text = "System Object Type";
+            label17.AutoSize = true;
+            label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label17.Location = new System.Drawing.Point(16, 932);
+            label17.Name = "label17";
+            label17.Size = new System.Drawing.Size(190, 25);
+            label17.TabIndex = 39;
+            label17.Text = "System Object Type";
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(16, 782);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(200, 25);
-            this.label18.TabIndex = 41;
-            this.label18.Text = "Object Friendly Name";
+            label18.AutoSize = true;
+            label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label18.Location = new System.Drawing.Point(16, 978);
+            label18.Name = "label18";
+            label18.Size = new System.Drawing.Size(200, 25);
+            label18.TabIndex = 41;
+            label18.Text = "Object Friendly Name";
             // 
             // RingChkBox
             // 
-            this.RingChkBox.AutoSize = true;
-            this.RingChkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.RingChkBox.Location = new System.Drawing.Point(1164, 154);
-            this.RingChkBox.Name = "RingChkBox";
-            this.RingChkBox.Size = new System.Drawing.Size(84, 29);
-            this.RingChkBox.TabIndex = 43;
-            this.RingChkBox.Text = "Ring?";
-            this.RingChkBox.UseVisualStyleBackColor = true;
+            RingChkBox.AutoSize = true;
+            RingChkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            RingChkBox.Location = new System.Drawing.Point(1164, 192);
+            RingChkBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            RingChkBox.Name = "RingChkBox";
+            RingChkBox.Size = new System.Drawing.Size(84, 29);
+            RingChkBox.TabIndex = 43;
+            RingChkBox.Text = "Ring?";
+            RingChkBox.UseVisualStyleBackColor = true;
             // 
             // label19
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label19.Location = new System.Drawing.Point(1159, 199);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(103, 25);
-            this.label19.TabIndex = 45;
-            this.label19.Text = "Ring Seed";
+            label19.AutoSize = true;
+            label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label19.Location = new System.Drawing.Point(1159, 249);
+            label19.Name = "label19";
+            label19.Size = new System.Drawing.Size(103, 25);
+            label19.TabIndex = 45;
+            label19.Text = "Ring Seed";
             // 
             // RingSeedBox
             // 
-            this.RingSeedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.RingSeedBox.Location = new System.Drawing.Point(1161, 227);
-            this.RingSeedBox.Name = "RingSeedBox";
-            this.RingSeedBox.Size = new System.Drawing.Size(100, 30);
-            this.RingSeedBox.TabIndex = 44;
+            RingSeedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            RingSeedBox.Location = new System.Drawing.Point(1161, 284);
+            RingSeedBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            RingSeedBox.Name = "RingSeedBox";
+            RingSeedBox.Size = new System.Drawing.Size(100, 30);
+            RingSeedBox.TabIndex = 44;
             // 
             // ObjFriendlyName
             // 
-            this.ObjFriendlyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ObjFriendlyName.Location = new System.Drawing.Point(229, 782);
-            this.ObjFriendlyName.Name = "ObjFriendlyName";
-            this.ObjFriendlyName.Size = new System.Drawing.Size(321, 30);
-            this.ObjFriendlyName.TabIndex = 46;
+            ObjFriendlyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            ObjFriendlyName.Location = new System.Drawing.Point(229, 978);
+            ObjFriendlyName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            ObjFriendlyName.Name = "ObjFriendlyName";
+            ObjFriendlyName.Size = new System.Drawing.Size(321, 30);
+            ObjFriendlyName.TabIndex = 46;
             // 
             // DescriptionBox
             // 
-            this.DescriptionBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.DescriptionBox.Location = new System.Drawing.Point(730, 668);
-            this.DescriptionBox.Multiline = true;
-            this.DescriptionBox.Name = "DescriptionBox";
-            this.DescriptionBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DescriptionBox.Size = new System.Drawing.Size(532, 149);
-            this.DescriptionBox.TabIndex = 47;
+            DescriptionBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            DescriptionBox.Location = new System.Drawing.Point(730, 835);
+            DescriptionBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            DescriptionBox.Multiline = true;
+            DescriptionBox.Name = "DescriptionBox";
+            DescriptionBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            DescriptionBox.Size = new System.Drawing.Size(532, 185);
+            DescriptionBox.TabIndex = 47;
             // 
             // label20
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label20.Location = new System.Drawing.Point(601, 671);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(109, 25);
-            this.label20.TabIndex = 48;
-            this.label20.Text = "Description";
+            label20.AutoSize = true;
+            label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label20.Location = new System.Drawing.Point(601, 839);
+            label20.Name = "label20";
+            label20.Size = new System.Drawing.Size(109, 25);
+            label20.TabIndex = 48;
+            label20.Text = "Description";
             // 
             // NewBtn
             // 
-            this.NewBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.NewBtn.Location = new System.Drawing.Point(5, 79);
-            this.NewBtn.Name = "NewBtn";
-            this.NewBtn.Size = new System.Drawing.Size(194, 32);
-            this.NewBtn.TabIndex = 49;
-            this.NewBtn.Text = "Clone Current";
-            this.NewBtn.UseVisualStyleBackColor = true;
-            this.NewBtn.Click += new System.EventHandler(this.NewBtn_Click);
+            NewBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            NewBtn.Location = new System.Drawing.Point(5, 99);
+            NewBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            NewBtn.Name = "NewBtn";
+            NewBtn.Size = new System.Drawing.Size(194, 40);
+            NewBtn.TabIndex = 49;
+            NewBtn.Text = "Clone Current";
+            NewBtn.UseVisualStyleBackColor = true;
+            NewBtn.Click += NewBtn_Click;
             // 
             // SaveBtn
             // 
-            this.SaveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.SaveBtn.Location = new System.Drawing.Point(224, 79);
-            this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(194, 32);
-            this.SaveBtn.TabIndex = 50;
-            this.SaveBtn.Text = "Save Changes";
-            this.SaveBtn.UseVisualStyleBackColor = true;
-            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            SaveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            SaveBtn.Location = new System.Drawing.Point(224, 99);
+            SaveBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            SaveBtn.Name = "SaveBtn";
+            SaveBtn.Size = new System.Drawing.Size(194, 40);
+            SaveBtn.TabIndex = 50;
+            SaveBtn.Text = "Save Changes";
+            SaveBtn.UseVisualStyleBackColor = true;
+            SaveBtn.Click += SaveBtn_Click;
             // 
             // PlanetTypeBox
             // 
-            this.PlanetTypeBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.PlanetTypeBox.FormattingEnabled = true;
-            this.PlanetTypeBox.Location = new System.Drawing.Point(229, 665);
-            this.PlanetTypeBox.Name = "PlanetTypeBox";
-            this.PlanetTypeBox.Size = new System.Drawing.Size(321, 33);
-            this.PlanetTypeBox.TabIndex = 52;
+            PlanetTypeBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            PlanetTypeBox.FormattingEnabled = true;
+            PlanetTypeBox.Location = new System.Drawing.Point(229, 831);
+            PlanetTypeBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            PlanetTypeBox.Name = "PlanetTypeBox";
+            PlanetTypeBox.Size = new System.Drawing.Size(321, 33);
+            PlanetTypeBox.TabIndex = 52;
             // 
             // label21
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(16, 668);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(117, 25);
-            this.label21.TabIndex = 51;
-            this.label21.Text = "Planet Type";
+            label21.AutoSize = true;
+            label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label21.Location = new System.Drawing.Point(16, 835);
+            label21.Name = "label21";
+            label21.Size = new System.Drawing.Size(117, 25);
+            label21.TabIndex = 51;
+            label21.Text = "Planet Type";
             // 
             // label22
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label22.Location = new System.Drawing.Point(16, 573);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(38, 25);
-            this.label22.TabIndex = 58;
-            this.label22.Text = "Tilt";
+            label22.AutoSize = true;
+            label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label22.Location = new System.Drawing.Point(16, 716);
+            label22.Name = "label22";
+            label22.Size = new System.Drawing.Size(38, 25);
+            label22.TabIndex = 58;
+            label22.Text = "Tilt";
             // 
             // TiltBox
             // 
-            this.TiltBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TiltBox.Location = new System.Drawing.Point(165, 573);
-            this.TiltBox.Name = "TiltBox";
-            this.TiltBox.Size = new System.Drawing.Size(100, 30);
-            this.TiltBox.TabIndex = 57;
+            TiltBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            TiltBox.Location = new System.Drawing.Point(165, 716);
+            TiltBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            TiltBox.Name = "TiltBox";
+            TiltBox.Size = new System.Drawing.Size(100, 30);
+            TiltBox.TabIndex = 57;
             // 
             // label23
             // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label23.Location = new System.Drawing.Point(728, 592);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(104, 25);
-            this.label23.TabIndex = 56;
-            this.label23.Text = "Mass (Kg)";
+            label23.AutoSize = true;
+            label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label23.Location = new System.Drawing.Point(728, 740);
+            label23.Name = "label23";
+            label23.Size = new System.Drawing.Size(104, 25);
+            label23.TabIndex = 56;
+            label23.Text = "Mass (Kg)";
             // 
             // MassBx
             // 
-            this.MassBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.MassBx.Location = new System.Drawing.Point(730, 620);
-            this.MassBx.Name = "MassBx";
-            this.MassBx.Size = new System.Drawing.Size(531, 30);
-            this.MassBx.TabIndex = 55;
+            MassBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            MassBx.Location = new System.Drawing.Point(730, 775);
+            MassBx.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            MassBx.Name = "MassBx";
+            MassBx.Size = new System.Drawing.Size(531, 30);
+            MassBx.TabIndex = 55;
             // 
             // label24
             // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label24.Location = new System.Drawing.Point(728, 517);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(72, 25);
-            this.label24.TabIndex = 54;
-            this.label24.Text = "Radius";
+            label24.AutoSize = true;
+            label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label24.Location = new System.Drawing.Point(728, 646);
+            label24.Name = "label24";
+            label24.Size = new System.Drawing.Size(72, 25);
+            label24.TabIndex = 54;
+            label24.Text = "Radius";
             // 
             // RadiusBx
             // 
-            this.RadiusBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.RadiusBx.Location = new System.Drawing.Point(730, 545);
-            this.RadiusBx.Name = "RadiusBx";
-            this.RadiusBx.Size = new System.Drawing.Size(532, 30);
-            this.RadiusBx.TabIndex = 53;
+            RadiusBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            RadiusBx.Location = new System.Drawing.Point(730, 681);
+            RadiusBx.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            RadiusBx.Name = "RadiusBx";
+            RadiusBx.Size = new System.Drawing.Size(532, 30);
+            RadiusBx.TabIndex = 53;
             // 
             // TiltScrollBar
             // 
-            this.TiltScrollBar.Location = new System.Drawing.Point(15, 620);
-            this.TiltScrollBar.Maximum = 180;
-            this.TiltScrollBar.Name = "TiltScrollBar";
-            this.TiltScrollBar.Size = new System.Drawing.Size(390, 21);
-            this.TiltScrollBar.TabIndex = 59;
-            this.TiltScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.TiltScrollBar_Scroll);
+            TiltScrollBar.Location = new System.Drawing.Point(15, 775);
+            TiltScrollBar.Maximum = 180;
+            TiltScrollBar.Name = "TiltScrollBar";
+            TiltScrollBar.Size = new System.Drawing.Size(390, 21);
+            TiltScrollBar.TabIndex = 59;
+            TiltScrollBar.Scroll += TiltScrollBar_Scroll;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label25.Location = new System.Drawing.Point(210, 23);
+            label25.Name = "label25";
+            label25.Size = new System.Drawing.Size(178, 25);
+            label25.TabIndex = 60;
+            label25.Text = "Database Selected";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(1281, 832);
-            this.Controls.Add(this.TiltScrollBar);
-            this.Controls.Add(this.label22);
-            this.Controls.Add(this.TiltBox);
-            this.Controls.Add(this.label23);
-            this.Controls.Add(this.MassBx);
-            this.Controls.Add(this.label24);
-            this.Controls.Add(this.RadiusBx);
-            this.Controls.Add(this.PlanetTypeBox);
-            this.Controls.Add(this.label21);
-            this.Controls.Add(this.SaveBtn);
-            this.Controls.Add(this.NewBtn);
-            this.Controls.Add(this.label20);
-            this.Controls.Add(this.DescriptionBox);
-            this.Controls.Add(this.ObjFriendlyName);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.RingSeedBox);
-            this.Controls.Add(this.RingChkBox);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.SysObJType);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.StarClass);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.OtherGasBox);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.MethaneBox);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.HeliumBox);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.HydrogenBox);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.AtmosTemp);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.AtmosHue);
-            this.Controls.Add(this.StarBox);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.AtmosOpacBox);
-            this.Controls.Add(this.AtmosCheckBox);
-            this.Controls.Add(this.InclanationScroll);
-            this.Controls.Add(this.InclanationVal);
-            this.Controls.Add(this.OrbitalPosVal);
-            this.Controls.Add(this.OrbitalScroll);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.MinorAxisBox);
-            this.Controls.Add(this.MajorAxisBox);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.GalaxyZCord);
-            this.Controls.Add(this.GalaxyYCord);
-            this.Controls.Add(this.GalaxyXCord);
-            this.Controls.Add(this.SysName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.DatabseFileName);
-            this.Controls.Add(this.GetDBPath);
-            this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.ShowIcon = false;
-            this.Text = "Starship Simulator Database Viewer";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.DimGray;
+            ClientSize = new System.Drawing.Size(1281, 1040);
+            Controls.Add(label25);
+            Controls.Add(TiltScrollBar);
+            Controls.Add(label22);
+            Controls.Add(TiltBox);
+            Controls.Add(label23);
+            Controls.Add(MassBx);
+            Controls.Add(label24);
+            Controls.Add(RadiusBx);
+            Controls.Add(PlanetTypeBox);
+            Controls.Add(label21);
+            Controls.Add(SaveBtn);
+            Controls.Add(NewBtn);
+            Controls.Add(label20);
+            Controls.Add(DescriptionBox);
+            Controls.Add(ObjFriendlyName);
+            Controls.Add(label19);
+            Controls.Add(RingSeedBox);
+            Controls.Add(RingChkBox);
+            Controls.Add(label18);
+            Controls.Add(SysObJType);
+            Controls.Add(label17);
+            Controls.Add(StarClass);
+            Controls.Add(label16);
+            Controls.Add(label15);
+            Controls.Add(OtherGasBox);
+            Controls.Add(label12);
+            Controls.Add(MethaneBox);
+            Controls.Add(label13);
+            Controls.Add(HeliumBox);
+            Controls.Add(label14);
+            Controls.Add(HydrogenBox);
+            Controls.Add(label11);
+            Controls.Add(AtmosTemp);
+            Controls.Add(label10);
+            Controls.Add(AtmosHue);
+            Controls.Add(StarBox);
+            Controls.Add(label9);
+            Controls.Add(AtmosOpacBox);
+            Controls.Add(AtmosCheckBox);
+            Controls.Add(InclanationScroll);
+            Controls.Add(InclanationVal);
+            Controls.Add(OrbitalPosVal);
+            Controls.Add(OrbitalScroll);
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(MinorAxisBox);
+            Controls.Add(MajorAxisBox);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(GalaxyZCord);
+            Controls.Add(GalaxyYCord);
+            Controls.Add(GalaxyXCord);
+            Controls.Add(SysName);
+            Controls.Add(label1);
+            Controls.Add(DatabseFileName);
+            Controls.Add(GetDBPath);
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            Name = "Form1";
+            ShowIcon = false;
+            Text = "Starship Simulator Database Viewer";
+            Load += Form1_Load;
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -777,6 +820,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox RadiusBx;
         private System.Windows.Forms.HScrollBar TiltScrollBar;
+        private System.Windows.Forms.Label label25;
     }
 }
 

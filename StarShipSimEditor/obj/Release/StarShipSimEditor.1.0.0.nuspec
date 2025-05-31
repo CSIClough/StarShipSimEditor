@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>StarShipSimEditor</id>
+    <version>1.0.0</version>
+    <authors>StarShipSimEditor</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="6bcfbc0d26b0e4123ac653c443269d114cbcd164" />
+    <dependencies>
+      <group targetFramework="net8.0-windows10.0.17763">
+        <dependency id="EntityFramework" version="6.5.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CSharp" version="4.7.0" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SQLite" version="1.0.119" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.9.0" exclude="Build,Analyzers" />
+        <dependency id="System.Drawing.Common" version="9.0.5" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net8.0-windows10.0.17763">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="H:\VS\GH\StarShipSimEditor\StarShipSimEditor\bin\Release\net8.0-windows10.0.17763.0\StarShipSimEditor.runtimeconfig.json" target="lib\net8.0-windows10.0.17763\StarShipSimEditor.runtimeconfig.json" />
+    <file src="H:\VS\GH\StarShipSimEditor\StarShipSimEditor\bin\Release\net8.0-windows10.0.17763.0\StarShipSimEditor.dll" target="lib\net8.0-windows10.0.17763\StarShipSimEditor.dll" />
+  </files>
+</package>
