@@ -1,3 +1,6 @@
+The workflow for the builds is available here;
+https://github.com/CSIClough/StarShipSimEditor/actions
+
 To use click on "Select Database", and navigate to the stars_custom.db and click on open.
 Usually in [steam folder]\[steam appname]\StarshipSimulator\Content\stars_custom.db
 
