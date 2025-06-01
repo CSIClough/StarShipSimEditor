@@ -146,6 +146,7 @@
             GalaxyXCord.Name = "GalaxyXCord";
             GalaxyXCord.Size = new System.Drawing.Size(100, 30);
             GalaxyXCord.TabIndex = 5;
+            GalaxyXCord.TextChanged += GalaxyXCord_TextChanged;
             // 
             // GalaxyYCord
             // 
@@ -155,6 +156,7 @@
             GalaxyYCord.Name = "GalaxyYCord";
             GalaxyYCord.Size = new System.Drawing.Size(100, 30);
             GalaxyYCord.TabIndex = 6;
+            GalaxyYCord.TextChanged += GalaxyYCord_TextChanged;
             // 
             // GalaxyZCord
             // 
@@ -164,6 +166,7 @@
             GalaxyZCord.Name = "GalaxyZCord";
             GalaxyZCord.Size = new System.Drawing.Size(100, 30);
             GalaxyZCord.TabIndex = 7;
+            GalaxyZCord.TextChanged += GalaxyZCord_TextChanged;
             // 
             // label2
             // 
@@ -223,6 +226,7 @@
             MajorAxisBox.Name = "MajorAxisBox";
             MajorAxisBox.Size = new System.Drawing.Size(248, 30);
             MajorAxisBox.TabIndex = 13;
+            MajorAxisBox.TextChanged += MajorAxisBox_TextChanged;
             // 
             // MinorAxisBox
             // 
@@ -232,6 +236,7 @@
             MinorAxisBox.Name = "MinorAxisBox";
             MinorAxisBox.Size = new System.Drawing.Size(248, 30);
             MinorAxisBox.TabIndex = 14;
+            MinorAxisBox.TextChanged += MinorAxisBox_TextChanged;
             // 
             // label7
             // 
@@ -255,6 +260,7 @@
             // 
             // OrbitalScroll
             // 
+            OrbitalScroll.LargeChange = 1;
             OrbitalScroll.Location = new System.Drawing.Point(18, 569);
             OrbitalScroll.Maximum = 360;
             OrbitalScroll.Name = "OrbitalScroll";
@@ -270,6 +276,7 @@
             OrbitalPosVal.Name = "OrbitalPosVal";
             OrbitalPosVal.Size = new System.Drawing.Size(100, 30);
             OrbitalPosVal.TabIndex = 18;
+            OrbitalPosVal.TextChanged += OrbitalPosVal_TextChanged;
             // 
             // InclanationVal
             // 
@@ -279,9 +286,11 @@
             InclanationVal.Name = "InclanationVal";
             InclanationVal.Size = new System.Drawing.Size(100, 30);
             InclanationVal.TabIndex = 19;
+            InclanationVal.TextChanged += InclanationVal_TextChanged;
             // 
             // InclanationScroll
             // 
+            InclanationScroll.LargeChange = 1;
             InclanationScroll.Location = new System.Drawing.Point(17, 669);
             InclanationScroll.Maximum = 360;
             InclanationScroll.Name = "InclanationScroll";
@@ -313,6 +322,7 @@
             AtmosOpacBox.Name = "AtmosOpacBox";
             AtmosOpacBox.Size = new System.Drawing.Size(100, 30);
             AtmosOpacBox.TabIndex = 22;
+            AtmosOpacBox.TextChanged += AtmosOpacBox_TextChanged;
             // 
             // label9
             // 
@@ -355,6 +365,7 @@
             AtmosHue.Name = "AtmosHue";
             AtmosHue.Size = new System.Drawing.Size(100, 30);
             AtmosHue.TabIndex = 25;
+            AtmosHue.TextChanged += AtmosHue_TextChanged;
             // 
             // label11
             // 
@@ -374,6 +385,7 @@
             AtmosTemp.Name = "AtmosTemp";
             AtmosTemp.Size = new System.Drawing.Size(100, 30);
             AtmosTemp.TabIndex = 27;
+            AtmosTemp.TextChanged += AtmosTemp_TextChanged;
             // 
             // label12
             // 
@@ -393,6 +405,7 @@
             MethaneBox.Name = "MethaneBox";
             MethaneBox.Size = new System.Drawing.Size(100, 30);
             MethaneBox.TabIndex = 33;
+            MethaneBox.TextChanged += MethaneBox_TextChanged;
             // 
             // label13
             // 
@@ -412,6 +425,7 @@
             HeliumBox.Name = "HeliumBox";
             HeliumBox.Size = new System.Drawing.Size(100, 30);
             HeliumBox.TabIndex = 31;
+            HeliumBox.TextChanged += HeliumBox_TextChanged;
             // 
             // label14
             // 
@@ -431,6 +445,7 @@
             HydrogenBox.Name = "HydrogenBox";
             HydrogenBox.Size = new System.Drawing.Size(100, 30);
             HydrogenBox.TabIndex = 29;
+            HydrogenBox.TextChanged += HydrogenBox_TextChanged;
             // 
             // label15
             // 
@@ -450,6 +465,7 @@
             OtherGasBox.Name = "OtherGasBox";
             OtherGasBox.Size = new System.Drawing.Size(100, 30);
             OtherGasBox.TabIndex = 35;
+            OtherGasBox.TextChanged += OtherGasBox_TextChanged;
             // 
             // StarClass
             // 
@@ -624,6 +640,7 @@
             TiltBox.Name = "TiltBox";
             TiltBox.Size = new System.Drawing.Size(100, 30);
             TiltBox.TabIndex = 57;
+            TiltBox.TextChanged += TiltBox_TextChanged;
             // 
             // label23
             // 
@@ -643,6 +660,7 @@
             MassBx.Name = "MassBx";
             MassBx.Size = new System.Drawing.Size(531, 30);
             MassBx.TabIndex = 55;
+            MassBx.TextChanged += MassBx_TextChanged;
             // 
             // label24
             // 
@@ -662,9 +680,11 @@
             RadiusBx.Name = "RadiusBx";
             RadiusBx.Size = new System.Drawing.Size(532, 30);
             RadiusBx.TabIndex = 53;
+            RadiusBx.TextChanged += RadiusBx_TextChanged;
             // 
             // TiltScrollBar
             // 
+            TiltScrollBar.LargeChange = 1;
             TiltScrollBar.Location = new System.Drawing.Point(15, 775);
             TiltScrollBar.Maximum = 180;
             TiltScrollBar.Name = "TiltScrollBar";

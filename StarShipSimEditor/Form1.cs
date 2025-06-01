@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace StarShipSimEditor
@@ -49,8 +51,6 @@ namespace StarShipSimEditor
 
         }
 
-
-
         private SQLiteConnection openDatabase()
         {
             connection = new SQLiteConnection($"Data Source={databasePath};Version=3");
@@ -67,7 +67,6 @@ namespace StarShipSimEditor
             command = connection.CreateCommand();
             command.CommandText = "select * from CelestialObjects";
             reader = command.ExecuteReader();
-            //dataGridView1.DataSource = reader;
             var columncount = reader.FieldCount;
             if (columncount != 27)
             {
@@ -132,14 +131,12 @@ namespace StarShipSimEditor
         }
 
         private void OrbitalScroll_Scroll(object sender, ScrollEventArgs e) => OrbitalPosVal.Text = OrbitalScroll.Value.ToString();
-
-
         private void InclanationScroll_Scroll(object sender, ScrollEventArgs e) => InclanationVal.Text = InclanationScroll.Value.ToString();
         private void TiltScrollBar_Scroll(object sender, ScrollEventArgs e) => TiltBox.Text = TiltScrollBar.Value.ToString();
 
         private void SysName_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            NewBtn.BackColor = Color.DimGray;
             SQLiteDataReader reader;
             SQLiteCommand command;
             command = connection.CreateCommand();
@@ -156,7 +153,7 @@ namespace StarShipSimEditor
             InclanationVal.Text = InclanationScroll.Value.ToString();
             OrbitalScroll.Value = Convert.ToInt32(readData(reader, ColumnOrbitPosition));
             OrbitalPosVal.Text = OrbitalScroll.Value.ToString();
-            PlanetTypeBox.Text = readData(reader,ColumnPlanetType);
+            PlanetTypeBox.Text = readData(reader, ColumnPlanetType);
             RadiusBx.Text = readData(reader, ColumnRadius);
             MassBx.Text = readData(reader, ColumnMass);
             TiltBox.Text = readData(reader, ColumnTilt);
@@ -167,10 +164,10 @@ namespace StarShipSimEditor
             AtmosOpacBox.Text = readData(reader, ColumnAtmosphereOpacity);
             AtmosHue.Text = readData(reader, ColumnAtmosphereHue);
             AtmosTemp.Text = readData(reader, ColumnAtmosphereTemp);
-            HydrogenBox.Text = readData(reader, ColumnHydrogen);
-            HeliumBox.Text = readData(reader, ColumnHelium);
-            MethaneBox.Text = readData(reader, ColumnMethane);
-            OtherGasBox.Text = readData(reader, ColumnOther);
+            HydrogenBox.Text = (Convert.ToUInt16(readData(reader, ColumnHydrogen)) * 100).ToString();
+            HeliumBox.Text = (Convert.ToUInt16(readData(reader, ColumnHelium)) * 100).ToString();
+            MethaneBox.Text = (Convert.ToUInt16(readData(reader, ColumnMethane)) * 100).ToString();
+            OtherGasBox.Text = (Convert.ToUInt16(readData(reader, ColumnOther)) * 100).ToString();
             if (readData(reader, ColumnRing) == "1")
             { RingChkBox.Checked = true; }
             else
@@ -180,8 +177,6 @@ namespace StarShipSimEditor
             SysObJType.SelectedItem = readData(reader, ColumnName_L1);
             ObjFriendlyName.Text = readData(reader, ColumnName_L3);
             DescriptionBox.Text = readData(reader, ColumnFlavourText);
-
-
         }
 
         private string readData(SQLiteDataReader reader, string column_name)
@@ -262,10 +257,10 @@ set
 {ColumnAtmosphereOpacity} = {AtmosOpacBox.Text},
 {ColumnAtmosphereHue} = {AtmosHue.Text},
 {ColumnAtmosphereTemp} = {AtmosTemp.Text},
-{ColumnHydrogen} = {HydrogenBox.Text},
-{ColumnHelium} = {HeliumBox.Text},
-{ColumnMethane} = {MethaneBox.Text},
-{ColumnOther} = {OtherGasBox.Text},
+{ColumnHydrogen} = {(Convert.ToUInt16(HydrogenBox.Text) / 100)},
+{ColumnHelium} = {(Convert.ToUInt16(HeliumBox.Text) / 100)},
+{ColumnMethane} = {(Convert.ToUInt16(MethaneBox.Text) / 100)},
+{ColumnOther} = {(Convert.ToUInt16(OtherGasBox.Text) / 100)},
 '{ColumnRing}' = {ringval},
 {ColumnRingSeed} = {RingSeedBox.Text},
 {ColumnName_L0} = '{StarClass.SelectedItem}',
@@ -300,8 +295,74 @@ where ID = {sysobID}
         private void NewBtn_Click(object sender, EventArgs e)
         {
             sysobID = -1;
+            NewBtn.BackColor = Color.Red;
         }
 
+        private void HydrogenBox_TextChanged(object sender, EventArgs e) => HydrogenBox.Text = PercentageValidate(HydrogenBox.Text);
+        private void HeliumBox_TextChanged(object sender, EventArgs e) => HeliumBox.Text = PercentageValidate(HeliumBox.Text);
+        private void MethaneBox_TextChanged(object sender, EventArgs e) => MethaneBox.Text = PercentageValidate(MethaneBox.Text);
+        private void OtherGasBox_TextChanged(object sender, EventArgs e) => OtherGasBox.Text = PercentageValidate(OtherGasBox.Text);
+        private string PercentageValidate(string ToCheck)
+        {
+            string ReturnableString = "0";
+            if (ToCheck == "") { ReturnableString = "0"; return ReturnableString; }
+            try
+            {
+                var tempval = Convert.ToDecimal(ToCheck);
+                if ((tempval <= 100) && (tempval >= 0))
+                {
+                    ReturnableString = tempval.ToString();
+                }
+                else
+                {
+                    ReturnableString = "0";
+                }
+            }
+            catch
+            {
+
+            }
+            return ReturnableString;
+        }
+
+        private void AtmosTemp_TextChanged(object sender, EventArgs e) => AtmosTemp.Text = DecimalNumberValidation(AtmosTemp.Text);
+        private void AtmosHue_TextChanged(object sender, EventArgs e) => AtmosHue.Text = DecimalNumberValidation(AtmosHue.Text);
+        private void AtmosOpacBox_TextChanged(object sender, EventArgs e) => AtmosOpacBox.Text = DecimalNumberValidation(AtmosOpacBox.Text);
+        private void MinorAxisBox_TextChanged(object sender, EventArgs e) => MinorAxisBox.Text = DecimalNumberValidation(MinorAxisBox.Text);
+        private void MajorAxisBox_TextChanged(object sender, EventArgs e) => MajorAxisBox.Text = DecimalNumberValidation(MajorAxisBox.Text);
+        private void GalaxyXCord_TextChanged(object sender, EventArgs e) => GalaxyXCord.Text = DecimalNumberValidation(GalaxyXCord.Text);
+        private void GalaxyYCord_TextChanged(object sender, EventArgs e) => GalaxyYCord.Text = DecimalNumberValidation(GalaxyYCord.Text);
+        private void GalaxyZCord_TextChanged(object sender, EventArgs e) => GalaxyZCord.Text = DecimalNumberValidation(GalaxyZCord.Text);
+        private void RadiusBx_TextChanged(object sender, EventArgs e) => RadiusBx.Text = DecimalNumberValidation(RadiusBx.Text);
+        private void MassBx_TextChanged(object sender, EventArgs e) => MassBx.Text = DecimalNumberValidation(MassBx.Text);
+
+        private string DecimalNumberValidation(string Number)
+        {
+            try
+            {
+                return Convert.ToDecimal(Number).ToString();
+            }
+            catch
+            {
+                return "0";
+            }
+        }
+
+        private void OrbitalPosVal_TextChanged(object sender, EventArgs e) => OrbitalPosVal.Text = IntNumberValidation(OrbitalPosVal.Text);
+        private void InclanationVal_TextChanged(object sender, EventArgs e) => InclanationVal.Text = IntNumberValidation(InclanationVal.Text);
+        private void TiltBox_TextChanged(object sender, EventArgs e) => TiltBox.Text = IntNumberValidation(TiltBox.Text);
+
+        private string IntNumberValidation(string Number)
+        {
+            try
+            {
+                return Convert.ToInt64(Number).ToString();
+            }
+            catch
+            {
+                return "0";
+            }
+        }
 
     }
 }
