@@ -18,32 +18,6 @@ namespace StarShipSimEditor
         private string column_name = "SystemName";
 
         int sysobID = -1;
-        string ColumnX = "X";
-        string ColumnY = "Y";
-        string ColumnZ = "Z";
-        string ColumnSemiMajorAxis = "SemiMajorAxis";
-        string ColumnSemiMinorAxis = "SemiMinorAxis";
-        string ColumnInclination = "Inclination";
-        string ColumnOrbitPosition = "OrbitPosition";
-        string ColumnPlanetType = "PlanetType";
-        string ColumnRadius = "Radius";
-        string ColumnMass = "Mass";
-        string ColumnTilt = "Tilt";
-        string ColumnAtmosphere = "Atmosphere?";
-        string ColumnAtmosphereOpacity = "AtmosphereOpacity";
-        string ColumnAtmosphereHue = "AtmosphereHue";
-        string ColumnAtmosphereTemp = "AtmosphereTemp";
-        string ColumnHydrogen = "Hydrogen";
-        string ColumnHelium = "Helium";
-        string ColumnMethane = "Methane";
-        string ColumnOther = "Other";
-        string ColumnRing = "Ring?";
-        string ColumnRingSeed = "RingSeed";
-        string ColumnName_L0 = "Name_L0";
-        string ColumnName_L1 = "Name_L1";
-        string ColumnName_L2 = "Name_L2";
-        string ColumnName_L3 = "Name_L3";
-        string ColumnFlavourText = "FlavourText";
 
         public Form1()
         {
@@ -65,13 +39,10 @@ namespace StarShipSimEditor
             SQLiteDataReader reader;
             SQLiteCommand command;
             command = connection.CreateCommand();
-            command.CommandText = "select * from CelestialObjects";
+            command.CommandText = $"select * from {lookuptable}";
             reader = command.ExecuteReader();
             var columncount = reader.FieldCount;
-            if (columncount != 27)
-            {
-                MessageBox.Show("Warning this tool does not work with this database version");
-            }
+
             var schemaTable = reader.GetSchemaTable();
             if (schemaTable != null)
             {
@@ -86,6 +57,7 @@ namespace StarShipSimEditor
         }
         public void getSystems()
         {
+            getColumns();
             SysName.Items.Clear();
             SQLiteDataReader reader;
             SQLiteCommand command;
@@ -136,47 +108,77 @@ namespace StarShipSimEditor
 
         private void SysName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            NewBtn.BackColor = Color.DimGray;
             SQLiteDataReader reader;
             SQLiteCommand command;
             command = connection.CreateCommand();
-            command.CommandText = $"select * from CelestialObjects where Name_L2 = '{SysName.SelectedItem.ToString()}'";
+            command.CommandText = $"select * from {lookuptable} where {column_name} = '{SysName.SelectedItem.ToString()}'";
             reader = command.ExecuteReader();
+            NewBtn.BackColor = Color.DimGray;
+
             reader.Read();
-            sysobID = Convert.ToInt16(readData(reader, "ID"));
             GalaxyXCord.Text = readData(reader, ColumnX);
             GalaxyYCord.Text = readData(reader, ColumnY);
             GalaxyZCord.Text = readData(reader, ColumnZ);
-            MajorAxisBox.Text = readData(reader, ColumnSemiMajorAxis);
-            MinorAxisBox.Text = readData(reader, ColumnSemiMinorAxis);
-            InclanationScroll.Value = Convert.ToInt32(readData(reader, ColumnInclination));
-            InclanationVal.Text = InclanationScroll.Value.ToString();
-            OrbitalScroll.Value = Convert.ToInt32(readData(reader, ColumnOrbitPosition));
-            OrbitalPosVal.Text = OrbitalScroll.Value.ToString();
-            PlanetTypeBox.Text = readData(reader, ColumnPlanetType);
-            RadiusBx.Text = readData(reader, ColumnRadius);
-            MassBx.Text = readData(reader, ColumnMass);
-            TiltBox.Text = readData(reader, ColumnTilt);
-            if (readData(reader, ColumnAtmosphere) == "1")
-            { AtmosCheckBox.Checked = true; }
+
+            if (StarBox.Checked)
+            {
+                SysPitch.Text = readData(reader, ColumnStarPitch);
+                SysYaw.Text = readData(reader, ColumnStarYaw);
+                StarTemp.Text = readData(reader, ColumnStarKelvin);
+                StarRadius.Text = readData(reader, ColumnStarRadius);
+                StarMass.Text = readData(reader, ColumnStarMass);
+                StarAge.Text = readData(reader, ColumnStarAge);
+                StarHydro.Text = readData(reader, ColumnStarHydro);
+                StarHelium.Text = readData(reader, ColumnStarHelium);
+                StarMetals.Text = readData(reader, ColumnStarMetals);
+                KuiperStart.Text = readData(reader, ColumnStarKuipStart);
+                KuiperEnd.Text = readData(reader, ColumnStarKuipEnd);
+                RaceDesc.Text = readData(reader, ColumnStarFlav);
+                RaceName.Text = readData(reader, ColumnStarRaceName);
+                RaceTech.Text = readData(reader, ColumnStarRaceTechL);
+                RaceGov.Text = readData(reader, ColumnStarRaceGov);
+                RacePhys.Text = readData(reader, ColumnStarRacePhys);
+                RaceRelig.Text = readData(reader, ColumnStarRaceRel);
+                RaceAgg.Text = readData(reader, ColumnStarRaceAgg);
+                RaceXen.Text = readData(reader, ColumnStarRaceXen);
+            }
             else
-            { AtmosCheckBox.Checked = false; }
-            AtmosOpacBox.Text = readData(reader, ColumnAtmosphereOpacity);
-            AtmosHue.Text = readData(reader, ColumnAtmosphereHue);
-            AtmosTemp.Text = readData(reader, ColumnAtmosphereTemp);
-            HydrogenBox.Text = (Convert.ToUInt16(readData(reader, ColumnHydrogen)) * 100).ToString();
-            HeliumBox.Text = (Convert.ToUInt16(readData(reader, ColumnHelium)) * 100).ToString();
-            MethaneBox.Text = (Convert.ToUInt16(readData(reader, ColumnMethane)) * 100).ToString();
-            OtherGasBox.Text = (Convert.ToUInt16(readData(reader, ColumnOther)) * 100).ToString();
-            if (readData(reader, ColumnRing) == "1")
-            { RingChkBox.Checked = true; }
-            else
-            { RingChkBox.Checked = false; }
-            RingSeedBox.Text = readData(reader, ColumnRingSeed);
-            StarClass.SelectedItem = readData(reader, ColumnName_L0);
-            SysObJType.SelectedItem = readData(reader, ColumnName_L1);
-            ObjFriendlyName.Text = readData(reader, ColumnName_L3);
-            DescriptionBox.Text = readData(reader, ColumnFlavourText);
+            {
+
+
+                sysobID = Convert.ToInt16(readData(reader, "ID"));
+
+                MajorAxisBox.Text = readData(reader, ColumnSemiMajorAxis);
+                MinorAxisBox.Text = readData(reader, ColumnSemiMinorAxis);
+                InclanationScroll.Value = Convert.ToInt32(readData(reader, ColumnInclination));
+                InclanationVal.Text = InclanationScroll.Value.ToString();
+                OrbitalScroll.Value = Convert.ToInt32(readData(reader, ColumnOrbitPosition));
+                OrbitalPosVal.Text = OrbitalScroll.Value.ToString();
+                PlanetTypeBox.Text = readData(reader, ColumnPlanetType);
+                RadiusBx.Text = readData(reader, ColumnRadius);
+                MassBx.Text = readData(reader, ColumnMass);
+                TiltBox.Text = readData(reader, ColumnTilt);
+                if (readData(reader, ColumnAtmosphere) == "1")
+                { AtmosCheckBox.Checked = true; }
+                else
+                { AtmosCheckBox.Checked = false; }
+                AtmosOpacBox.Text = readData(reader, ColumnAtmosphereOpacity);
+                AtmosHue.Text = readData(reader, ColumnAtmosphereHue);
+                AtmosTemp.Text = readData(reader, ColumnAtmosphereTemp);
+                HydrogenBox.Text = (Convert.ToUInt16(readData(reader, ColumnHydrogen)) * 100).ToString();
+                HeliumBox.Text = (Convert.ToUInt16(readData(reader, ColumnHelium)) * 100).ToString();
+                MethaneBox.Text = (Convert.ToUInt16(readData(reader, ColumnMethane)) * 100).ToString();
+                OtherGasBox.Text = (Convert.ToUInt16(readData(reader, ColumnOther)) * 100).ToString();
+                if (readData(reader, ColumnRing) == "1")
+                { RingChkBox.Checked = true; }
+                else
+                { RingChkBox.Checked = false; }
+                RingSeedBox.Text = readData(reader, ColumnRingSeed);
+                StarClass.SelectedItem = readData(reader, ColumnName_L0);
+                SysObJType.SelectedItem = readData(reader, ColumnName_L1);
+                ObjFriendlyName.Text = readData(reader, ColumnName_L3);
+                DescriptionBox.Text = readData(reader, ColumnFlavourText);
+            }
         }
 
         private string readData(SQLiteDataReader reader, string column_name)
@@ -195,50 +197,80 @@ namespace StarShipSimEditor
 
         private void StarBox_CheckedChanged(object sender, EventArgs e)
         {
+            string tmp = "";
+            try
+            {
+                tmp = SysName.SelectedItem.ToString();
+            }
+            catch
+            {
+                SysName.SelectedItem = "";
+            }
             if (StarBox.Checked)
-            {
-                lookuptable = "StarSystems";
-                column_name = "SystemName";
-            }
-            else
-            {
-                lookuptable = "CelestialObjects";
-                column_name = "Name_L2";
-            }
-            getSystems();
+                {
+
+                    TabControlSys.SelectedIndex = 0;
+                    lookuptable = "StarSystems";
+                    column_name = "SystemName";
+                }
+                else
+                {
+                    TabControlSys.SelectedIndex = 1;
+                    lookuptable = "CelestialObjects";
+                    column_name = "Name_L2";
+                }
+                getSystems();
+                try
+                {
+                    SysName.SelectedItem = tmp;
+                }
+                catch
+                {
+                    SysName.SelectedItem = "";
+                }
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            StarBox.Checked = false;
+            TabControlSys.SelectedIndex = 1;
             StarClass.Items.AddRange(new string[] { StarTypes.GClass, StarTypes.MClass, StarTypes.Unknown });
             SysObJType.Items.AddRange(new string[] { BodyTypes.Rocky_Planet, BodyTypes.Dwarf_Planet, BodyTypes.Gas_Giant, BodyTypes.G2V_Class_Star, BodyTypes.M2V_Class_Star, BodyTypes.Class_IV_Gas_Giant, BodyTypes.Earth_Analoge });
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            SQLiteCommand command;
-            command = connection.CreateCommand();
-            int atmosval = 0;
-            if (AtmosCheckBox.Checked) { atmosval = 1; }
-            int ringval = 0;
-            if (RingChkBox.Checked) { ringval = 1; }
-
-            if (sysobID == -1)
+            if (StarBox.Checked)
             {
+                //Do Stuff here to save Star Systems
+            }
+            else
+            {
+                SQLiteCommand command;
+                command = connection.CreateCommand();
+                int atmosval = 0;
+                if (AtmosCheckBox.Checked) { atmosval = 1; }
+                int ringval = 0;
+                if (RingChkBox.Checked) { ringval = 1; }
+
+                if (sysobID == -1)
+                {
 
 
 
-                command.CommandText = $@"
+                    command.CommandText = $@"
 insert into CelestialObjects
 (ID,{ColumnName_L2},{ColumnX},{ColumnY},{ColumnZ},{ColumnSemiMajorAxis},{ColumnSemiMinorAxis},{ColumnInclination},{ColumnOrbitPosition},{ColumnPlanetType},{ColumnRadius},{ColumnMass},{ColumnTilt},'{ColumnAtmosphere}',{ColumnAtmosphereOpacity},{ColumnAtmosphereHue},{ColumnAtmosphereTemp},{ColumnHydrogen},{ColumnHelium},{ColumnMethane},{ColumnOther},'{ColumnRing}',{ColumnRingSeed},{ColumnName_L0},{ColumnName_L1},{ColumnName_L3},{ColumnFlavourText})
 values
 (IFNULL((Select MAX(ID) From CelestialObjects),0) + 1,'{SysName.Text}',{GalaxyXCord.Text},{GalaxyYCord.Text},{GalaxyZCord.Text},{MajorAxisBox.Text},{MinorAxisBox.Text},{InclanationScroll.Value},{OrbitalScroll.Value},{PlanetTypeBox.Text},{RadiusBx.Text},{MassBx.Text},{TiltBox.Text},{atmosval},{AtmosOpacBox.Text},{AtmosHue.Text},{AtmosTemp.Text},{HydrogenBox.Text},{HeliumBox.Text},{MethaneBox.Text},{OtherGasBox.Text},{ringval},{RingSeedBox.Text},'{StarClass.SelectedItem}','{SysObJType.SelectedItem}','{ObjFriendlyName.Text}','{DescriptionBox.Text}')
 ;
 ";
-            }
-            else
-            {
-                command.CommandText = $@"
+                }
+                else
+                {
+                    command.CommandText = $@"
 update CelestialObjects
 set 
 {ColumnName_L2} = '{SysName.Text}',
@@ -270,14 +302,7 @@ set
 where ID = {sysobID}
 ;
 ";
-            }
-            try
-            {
-
-                command.ExecuteNonQuery();
-            }
-            catch
-            {
+                }
                 try
                 {
 
@@ -285,11 +310,18 @@ where ID = {sysobID}
                 }
                 catch
                 {
+                    try
+                    {
+
+                        command.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+
+                    }
 
                 }
-
             }
-
         }
 
         private void NewBtn_Click(object sender, EventArgs e)
@@ -361,6 +393,30 @@ where ID = {sysobID}
             catch
             {
                 return "0";
+            }
+        }
+
+        private void RingChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RingChkBox.Checked)
+            {
+                RingSeedBox.Enabled = true;
+            }
+            else
+            {
+                RingSeedBox.Enabled = false;
+            }
+        }
+        private void ToggleStarCheck(object sender, MouseEventArgs e)
+        {
+            if (TabControlSys.SelectedTab.Name == "StarTabControl")
+            {
+                StarBox.Checked = true;
+                
+            }
+            else
+            {
+                StarBox.Checked = false;
             }
         }
 
