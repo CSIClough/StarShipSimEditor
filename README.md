@@ -2,7 +2,8 @@ The workflow for the builds is available here;
 https://github.com/CSIClough/StarShipSimEditor/actions
 
 To use click on "Select Database", and navigate to the stars_custom.db and click on open.
-Usually in [steam folder]\[steam appname]\StarshipSimulator\Content\stars_custom.db
+This is usually found in the following location unless a custom location has been specified in Steam.
+C:\Program Files (x86)\Steam\steamapps\common\Starship Simulator Dev Playtest\StarshipSimulator\Content\stars_custom.db
 
 Clicking on the drop box against "Object Name" will show all the objects in the Celestial Objects table. 
 
