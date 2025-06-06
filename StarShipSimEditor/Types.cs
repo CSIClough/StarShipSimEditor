@@ -74,6 +74,17 @@ namespace StarShipSimEditor
         string ColumnStarRaceRel = "RaceReligion";
         string ColumnStarRaceAgg = "RaceAggression";
         string ColumnStarRaceXen = "RaceXenophobia";
-        
+
+
+
+        string ColumnGaiaSector = "Sector";
+        string ColumnGaiaName2 = "Name2";
+        string ColumnGaiaName3 = "Name3";
+        string ColumnGaiaTeff = "Teff";
+        string ColumnGaiaSprectral = "SpectralType";
+        string ColumnGaiaBinary = "IsBinary";
+
+
+
     }
 }

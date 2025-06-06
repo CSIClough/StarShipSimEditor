@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Windows.Forms;
 
 namespace StarShipSimEditor
@@ -11,11 +16,15 @@ namespace StarShipSimEditor
 
     public partial class Form1 : Form
     {
-        SQLiteConnection connection = null;
+        SQLiteConnection stars_customConnection = null;
+        SQLiteConnection stars_2000lyConnection = null;
+        string gaiaStars = "stars_2000ly.db";
+        string customStars = "stars_custom.db";
         private string databasePath;
         private List<string> columns;
         private string lookuptable = "StarSystems";
         private string column_name = "SystemName";
+        int starsSelected = 0;
 
         int sysobID = -1;
 
@@ -25,14 +34,15 @@ namespace StarShipSimEditor
 
         }
 
-        private SQLiteConnection openDatabase()
+        private SQLiteConnection openDatabase(string dbname)
         {
-            connection = new SQLiteConnection($"Data Source={databasePath};Version=3");
+
+            var connection = new SQLiteConnection($"Data Source={databasePath + "\\" + dbname};Version=3");
             connection.Open();
             return connection;
         }
 
-        private void getColumns()
+        private void getColumns(SQLiteConnection connection, string table)
         {
             columns = new List<string>();
 
@@ -52,53 +62,95 @@ namespace StarShipSimEditor
                     columns.Add(columnName.ToString());
                 }
             }
-
-
         }
-        public void getSystems()
+        public void getSystems(SQLiteConnection connection, string table, string NamingColumn)
         {
-            getColumns();
+            getColumns(connection, table);
+            var tmp = SysName.SelectedItem;
             SysName.Items.Clear();
             SQLiteDataReader reader;
             SQLiteCommand command;
             command = connection.CreateCommand();
-            command.CommandText = $"select DISTINCT {column_name} from {lookuptable}";
+            command.CommandText = $"select DISTINCT {NamingColumn} from {table}";
             reader = command.ExecuteReader();
-
             while (reader.Read())
             {
-                SysName.Items.Add(reader.GetString(0));
+                try
+                {
+                    if (!(((SysName.Items.Count % 1000000) == 0) && (SysName.Items.Count > 1)))
+                    {
+                        SysName.Items.Add(reader.GetString(0));
+                    }
+                    else
+                    {
+                        var response = MessageBox.Show("1 Million records have been loaded, do you want to continue?", "Large Data", MessageBoxButtons.YesNo);
+                        if (response == DialogResult.No)
+                        {
+                            break;
+                        }
+
+                    }
+                }
+                catch { }
+            }
+            if (SysName.Items.Contains(tmp))
+            {
+                SysName.SelectedItem = tmp;
+            }
+            else
+            {
+                SysName.SelectedText = "";
+                SysName.Text = "";
+            }
+        }
+
+        private void getDBFolder()
+        {
+
+
+            stars_customConnection = openDatabase(customStars);
+            stars_2000lyConnection = openDatabase(gaiaStars);
+            SysName.Items.Clear();
+
+            if (starsSelected == 1)
+            {
+                lookuptable = "StarSystems";
+                column_name = "SystemName";
+                getColumns(stars_customConnection, column_name);
+                getSystems(stars_customConnection, lookuptable, column_name);
+
+            }
+            else if (starsSelected == 0)
+            {
+                lookuptable = "CelestialObjects";
+                column_name = "Name_L2";
+                getColumns(stars_customConnection, column_name);
+                getSystems(stars_customConnection, lookuptable, column_name);
+
+            }
+            else
+            {
+                lookuptable = "Stars";
+                column_name = "Name1";
+                getColumns(stars_2000lyConnection, column_name);
+                getSystems(stars_2000lyConnection, lookuptable, column_name);
+
             }
         }
 
         private void GetDBPath_Click(object sender, EventArgs e)
         {
-
             if (DatabaseDiag.ShowDialog() == DialogResult.OK)
             {
-                databasePath = DatabaseDiag.FileName;
-                DatabseFileName.Text = databasePath;
+                databasePath = DatabaseDiag.SelectedPath;
+                DatabaseFileName.Text = databasePath;
             }
             else
             {
-                MessageBox.Show("No database selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DatabseFileName.Text = "None";
+                MessageBox.Show("No database folder selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DatabaseFileName.Text = "None";
             }
-            var conenction = openDatabase();
-            SysName.Items.Clear();
-            getColumns();
-            if (StarBox.Checked)
-            {
-                lookuptable = "StarSystems";
-                column_name = "SystemName";
-            }
-            else
-            {
-                lookuptable = "CelestialObjects";
-                column_name = "Name_L2";
-            }
-            getSystems();
-
+            getDBFolder();
 
         }
 
@@ -110,18 +162,19 @@ namespace StarShipSimEditor
         {
             SQLiteDataReader reader;
             SQLiteCommand command;
-            command = connection.CreateCommand();
-            command.CommandText = $"select * from {lookuptable} where {column_name} = '{SysName.SelectedItem.ToString()}'";
-            reader = command.ExecuteReader();
-            NewBtn.BackColor = Color.DimGray;
 
-            reader.Read();
-            GalaxyXCord.Text = readData(reader, ColumnX);
-            GalaxyYCord.Text = readData(reader, ColumnY);
-            GalaxyZCord.Text = readData(reader, ColumnZ);
 
-            if (StarBox.Checked)
+            if (starsSelected == 1)
             {
+                command = stars_customConnection.CreateCommand();
+                command.CommandText = $"select * from {lookuptable} where {column_name} = '{SysName.SelectedItem.ToString()}'";
+                reader = command.ExecuteReader();
+                NewBtn.BackColor = Color.DimGray;
+
+                reader.Read();
+                GalaxyXCord.Text = readData(reader, ColumnX);
+                GalaxyYCord.Text = readData(reader, ColumnY);
+                GalaxyZCord.Text = readData(reader, ColumnZ);
                 SysPitch.Text = readData(reader, ColumnStarPitch);
                 SysYaw.Text = readData(reader, ColumnStarYaw);
                 StarTemp.Text = readData(reader, ColumnStarKelvin);
@@ -142,9 +195,17 @@ namespace StarShipSimEditor
                 RaceAgg.Text = readData(reader, ColumnStarRaceAgg);
                 RaceXen.Text = readData(reader, ColumnStarRaceXen);
             }
-            else
+            else if (starsSelected == 0)
             {
+                command = stars_customConnection.CreateCommand();
+                command.CommandText = $"select * from {lookuptable} where {column_name} = '{SysName.SelectedItem.ToString()}'";
+                reader = command.ExecuteReader();
+                NewBtn.BackColor = Color.DimGray;
 
+                reader.Read();
+                GalaxyXCord.Text = readData(reader, ColumnX);
+                GalaxyYCord.Text = readData(reader, ColumnY);
+                GalaxyZCord.Text = readData(reader, ColumnZ);
 
                 sysobID = Convert.ToInt16(readData(reader, "ID"));
 
@@ -179,6 +240,30 @@ namespace StarShipSimEditor
                 ObjFriendlyName.Text = readData(reader, ColumnName_L3);
                 DescriptionBox.Text = readData(reader, ColumnFlavourText);
             }
+            else
+            {
+                lookuptable = "Stars";
+                column_name = "Name1";
+                command = stars_2000lyConnection.CreateCommand();
+                command.CommandText = $"select * from {lookuptable} where {column_name} = '{SysName.SelectedItem.ToString()}'";
+                reader = command.ExecuteReader();
+                NewBtn.BackColor = Color.DimGray;
+
+                reader.Read();
+                GalaxyXCord.Text = readData(reader, ColumnX);
+                GalaxyYCord.Text = readData(reader, ColumnY);
+                GalaxyZCord.Text = readData(reader, ColumnZ);
+                GaiaSector.Text = readData(reader, ColumnGaiaSector);
+                GaiaName2.Text = readData(reader, ColumnGaiaName2);
+                GaiaName3.Text = readData(reader, ColumnGaiaName3);
+                GaiaTeff.Text = readData(reader, ColumnGaiaTeff);
+                GaiaSpectral.Text = readData(reader, ColumnGaiaSprectral);
+
+
+                if (readData(reader, ColumnGaiaBinary) == "1") { GaiaBinary.Checked = true; } else { GaiaBinary.Checked = false; }
+
+
+            }
         }
 
         private string readData(SQLiteDataReader reader, string column_name)
@@ -194,47 +279,43 @@ namespace StarShipSimEditor
                 return "";
             }
         }
-
-        private void StarBox_CheckedChanged(object sender, EventArgs e)
-        {
-            string tmp = "";
-            try
-            {
-                tmp = SysName.SelectedItem.ToString();
-            }
-            catch
-            {
-                SysName.SelectedItem = "";
-            }
-            if (StarBox.Checked)
-                {
-
-                    TabControlSys.SelectedIndex = 0;
-                    lookuptable = "StarSystems";
-                    column_name = "SystemName";
-                }
-                else
-                {
-                    TabControlSys.SelectedIndex = 1;
-                    lookuptable = "CelestialObjects";
-                    column_name = "Name_L2";
-                }
-                getSystems();
-                try
-                {
-                    SysName.SelectedItem = tmp;
-                }
-                catch
-                {
-                    SysName.SelectedItem = "";
-                }
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
+            string steampath = "C:\\Program Files (x86)\\Steam\\SteamApps\\libraryfolders.vdf";
+            string targetloc = "steamapps\\common\\Starship Simulator Dev Playtest\\StarshipSimulator\\Content";
+            var steamcontents = File.ReadAllLines(steampath);
+            List<string> steampaths = new List<string>();
+            foreach (var item in steamcontents)
+            {
+                if (item.Contains("path"))
+                {
+                    var tmp = item.Replace('"', '\0');
+                    tmp = tmp.Split('\0')[3];
+                    var starshiploc = $"{tmp}\\{targetloc}";
+                    if (Directory.Exists(starshiploc))
+                    {
+                        steampaths.Add(starshiploc);
+                    }
+                }
+            }
 
-            StarBox.Checked = false;
+            foreach (var item in steampaths)
+            {
+                var path = item + "\\" + customStars;
+                if (File.Exists(path))
+                {
+                    path = item + "\\" + gaiaStars;
+                    if (File.Exists(path))
+                    {
+                        databasePath = item;
+                        break;
+                    }
+                }
+            }
+
+            DatabaseFileName.Text = databasePath;
+            getDBFolder();
+
             TabControlSys.SelectedIndex = 1;
             StarClass.Items.AddRange(new string[] { StarTypes.GClass, StarTypes.MClass, StarTypes.Unknown });
             SysObJType.Items.AddRange(new string[] { BodyTypes.Rocky_Planet, BodyTypes.Dwarf_Planet, BodyTypes.Gas_Giant, BodyTypes.G2V_Class_Star, BodyTypes.M2V_Class_Star, BodyTypes.Class_IV_Gas_Giant, BodyTypes.Earth_Analoge });
@@ -242,14 +323,14 @@ namespace StarShipSimEditor
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            if (StarBox.Checked)
+            if (starsSelected == 1)
             {
                 //Do Stuff here to save Star Systems
             }
-            else
+            else if (starsSelected == 0)
             {
                 SQLiteCommand command;
-                command = connection.CreateCommand();
+                command = stars_customConnection.CreateCommand();
                 int atmosval = 0;
                 if (AtmosCheckBox.Checked) { atmosval = 1; }
                 int ringval = 0;
@@ -257,9 +338,6 @@ namespace StarShipSimEditor
 
                 if (sysobID == -1)
                 {
-
-
-
                     command.CommandText = $@"
 insert into CelestialObjects
 (ID,{ColumnName_L2},{ColumnX},{ColumnY},{ColumnZ},{ColumnSemiMajorAxis},{ColumnSemiMinorAxis},{ColumnInclination},{ColumnOrbitPosition},{ColumnPlanetType},{ColumnRadius},{ColumnMass},{ColumnTilt},'{ColumnAtmosphere}',{ColumnAtmosphereOpacity},{ColumnAtmosphereHue},{ColumnAtmosphereTemp},{ColumnHydrogen},{ColumnHelium},{ColumnMethane},{ColumnOther},'{ColumnRing}',{ColumnRingSeed},{ColumnName_L0},{ColumnName_L1},{ColumnName_L3},{ColumnFlavourText})
@@ -411,13 +489,31 @@ where ID = {sysobID}
         {
             if (TabControlSys.SelectedTab.Name == "StarTabControl")
             {
-                StarBox.Checked = true;
-                
+                starsSelected = 1;
+                lookuptable = "StarSystems";
+                column_name = "SystemName";
+                getSystems(stars_customConnection, lookuptable, column_name);
+            }
+            else if (TabControlSys.SelectedTab.Name == "GaiaDB")
+            {
+                var response = MessageBox.Show("This is experimental and dangerous, the database is large and will take a while to load, do you want to continue?", "Are you sure?", MessageBoxButtons.YesNo);
+                if (response == DialogResult.Yes)
+                {
+                    starsSelected = 2;
+                    lookuptable = "Stars";
+                    column_name = "Name1";
+                    getSystems(stars_2000lyConnection, lookuptable, column_name);
+                }
             }
             else
             {
-                StarBox.Checked = false;
+                starsSelected = 0;
+                lookuptable = "CelestialObjects";
+                column_name = "Name_L2";
+                getSystems(stars_customConnection, lookuptable, column_name);
             }
+
+
         }
 
     }

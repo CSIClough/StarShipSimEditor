@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             GetDBPath = new System.Windows.Forms.Button();
-            DatabaseDiag = new System.Windows.Forms.OpenFileDialog();
-            DatabseFileName = new System.Windows.Forms.Label();
+            DatabaseFileName = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             SysName = new System.Windows.Forms.ComboBox();
             sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
-            StarBox = new System.Windows.Forms.CheckBox();
             NewBtn = new System.Windows.Forms.Button();
             SaveBtn = new System.Windows.Forms.Button();
             label25 = new System.Windows.Forms.Label();
@@ -124,15 +122,29 @@
             HeliumBox = new System.Windows.Forms.TextBox();
             MethaneBox = new System.Windows.Forms.TextBox();
             label13 = new System.Windows.Forms.Label();
+            GaiaDB = new System.Windows.Forms.TabPage();
+            GaiaBinary = new System.Windows.Forms.CheckBox();
+            label28 = new System.Windows.Forms.Label();
+            GaiaTeff = new System.Windows.Forms.TextBox();
+            label42 = new System.Windows.Forms.Label();
+            GaiaName3 = new System.Windows.Forms.TextBox();
+            GaiaName2 = new System.Windows.Forms.TextBox();
+            label47 = new System.Windows.Forms.Label();
+            GaiaSector = new System.Windows.Forms.TextBox();
+            label48 = new System.Windows.Forms.Label();
+            GaiaSpectral = new System.Windows.Forms.TextBox();
+            label50 = new System.Windows.Forms.Label();
             GalaxyXCord = new System.Windows.Forms.TextBox();
             GalaxyYCord = new System.Windows.Forms.TextBox();
             GalaxyZCord = new System.Windows.Forms.TextBox();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
+            DatabaseDiag = new System.Windows.Forms.FolderBrowserDialog();
             TabControlSys.SuspendLayout();
             StarTabControl.SuspendLayout();
             SysObjectTab.SuspendLayout();
+            GaiaDB.SuspendLayout();
             SuspendLayout();
             // 
             // GetDBPath
@@ -141,25 +153,21 @@
             GetDBPath.Location = new System.Drawing.Point(5, 15);
             GetDBPath.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             GetDBPath.Name = "GetDBPath";
-            GetDBPath.Size = new System.Drawing.Size(194, 40);
+            GetDBPath.Size = new System.Drawing.Size(281, 40);
             GetDBPath.TabIndex = 0;
-            GetDBPath.Text = "Select Database";
+            GetDBPath.Text = "Select Database Folder";
             GetDBPath.UseVisualStyleBackColor = true;
             GetDBPath.Click += GetDBPath_Click;
             // 
-            // DatabaseDiag
+            // DatabaseFileName
             // 
-            DatabaseDiag.FileName = "openFileDialog1";
-            // 
-            // DatabseFileName
-            // 
-            DatabseFileName.AutoSize = true;
-            DatabseFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            DatabseFileName.Location = new System.Drawing.Point(394, 23);
-            DatabseFileName.Name = "DatabseFileName";
-            DatabseFileName.Size = new System.Drawing.Size(208, 25);
-            DatabseFileName.TabIndex = 1;
-            DatabseFileName.Text = "No Database Selected";
+            DatabaseFileName.AutoSize = true;
+            DatabaseFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            DatabaseFileName.Location = new System.Drawing.Point(488, 23);
+            DatabaseFileName.Name = "DatabaseFileName";
+            DatabaseFileName.Size = new System.Drawing.Size(208, 25);
+            DatabaseFileName.TabIndex = 1;
+            DatabaseFileName.Text = "No Database Selected";
             // 
             // label1
             // 
@@ -185,19 +193,6 @@
             // sqLiteCommand1
             // 
             sqLiteCommand1.CommandText = null;
-            // 
-            // StarBox
-            // 
-            StarBox.AutoSize = true;
-            StarBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            StarBox.Location = new System.Drawing.Point(462, 106);
-            StarBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            StarBox.Name = "StarBox";
-            StarBox.Size = new System.Drawing.Size(81, 29);
-            StarBox.TabIndex = 24;
-            StarBox.Text = "Star?";
-            StarBox.UseVisualStyleBackColor = true;
-            StarBox.CheckedChanged += StarBox_CheckedChanged;
             // 
             // NewBtn
             // 
@@ -227,7 +222,7 @@
             // 
             label25.AutoSize = true;
             label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            label25.Location = new System.Drawing.Point(210, 23);
+            label25.Location = new System.Drawing.Point(304, 23);
             label25.Name = "label25";
             label25.Size = new System.Drawing.Size(178, 25);
             label25.TabIndex = 60;
@@ -237,6 +232,7 @@
             // 
             TabControlSys.Controls.Add(StarTabControl);
             TabControlSys.Controls.Add(SysObjectTab);
+            TabControlSys.Controls.Add(GaiaDB);
             TabControlSys.Location = new System.Drawing.Point(20, 246);
             TabControlSys.Name = "TabControlSys";
             TabControlSys.SelectedIndex = 0;
@@ -1158,6 +1154,134 @@
             label13.TabIndex = 86;
             label13.Text = "Helium %";
             // 
+            // GaiaDB
+            // 
+            GaiaDB.Controls.Add(GaiaBinary);
+            GaiaDB.Controls.Add(label28);
+            GaiaDB.Controls.Add(GaiaTeff);
+            GaiaDB.Controls.Add(label42);
+            GaiaDB.Controls.Add(GaiaName3);
+            GaiaDB.Controls.Add(GaiaName2);
+            GaiaDB.Controls.Add(label47);
+            GaiaDB.Controls.Add(GaiaSector);
+            GaiaDB.Controls.Add(label48);
+            GaiaDB.Controls.Add(GaiaSpectral);
+            GaiaDB.Controls.Add(label50);
+            GaiaDB.Location = new System.Drawing.Point(4, 29);
+            GaiaDB.Name = "GaiaDB";
+            GaiaDB.Padding = new System.Windows.Forms.Padding(3);
+            GaiaDB.Size = new System.Drawing.Size(1281, 812);
+            GaiaDB.TabIndex = 2;
+            GaiaDB.Text = "Gaia Database";
+            GaiaDB.UseVisualStyleBackColor = true;
+            // 
+            // GaiaBinary
+            // 
+            GaiaBinary.AutoSize = true;
+            GaiaBinary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            GaiaBinary.Location = new System.Drawing.Point(63, 436);
+            GaiaBinary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            GaiaBinary.Name = "GaiaBinary";
+            GaiaBinary.Size = new System.Drawing.Size(100, 29);
+            GaiaBinary.TabIndex = 122;
+            GaiaBinary.Text = "Binary?";
+            GaiaBinary.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label28.Location = new System.Drawing.Point(63, 280);
+            label28.Name = "label28";
+            label28.Size = new System.Drawing.Size(46, 25);
+            label28.TabIndex = 121;
+            label28.Text = "Teff";
+            // 
+            // GaiaTeff
+            // 
+            GaiaTeff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            GaiaTeff.Location = new System.Drawing.Point(63, 309);
+            GaiaTeff.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            GaiaTeff.Name = "GaiaTeff";
+            GaiaTeff.Size = new System.Drawing.Size(99, 30);
+            GaiaTeff.TabIndex = 120;
+            // 
+            // label42
+            // 
+            label42.AutoSize = true;
+            label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label42.Location = new System.Drawing.Point(63, 193);
+            label42.Name = "label42";
+            label42.Size = new System.Drawing.Size(75, 25);
+            label42.TabIndex = 119;
+            label42.Text = "Name3";
+            // 
+            // GaiaName3
+            // 
+            GaiaName3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            GaiaName3.Location = new System.Drawing.Point(63, 228);
+            GaiaName3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            GaiaName3.Name = "GaiaName3";
+            GaiaName3.Size = new System.Drawing.Size(310, 30);
+            GaiaName3.TabIndex = 118;
+            // 
+            // GaiaName2
+            // 
+            GaiaName2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            GaiaName2.Location = new System.Drawing.Point(63, 151);
+            GaiaName2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            GaiaName2.Name = "GaiaName2";
+            GaiaName2.Size = new System.Drawing.Size(310, 30);
+            GaiaName2.TabIndex = 116;
+            // 
+            // label47
+            // 
+            label47.AutoSize = true;
+            label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label47.Location = new System.Drawing.Point(63, 116);
+            label47.Name = "label47";
+            label47.Size = new System.Drawing.Size(75, 25);
+            label47.TabIndex = 117;
+            label47.Text = "Name2";
+            // 
+            // GaiaSector
+            // 
+            GaiaSector.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            GaiaSector.Location = new System.Drawing.Point(63, 76);
+            GaiaSector.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            GaiaSector.Name = "GaiaSector";
+            GaiaSector.Size = new System.Drawing.Size(245, 30);
+            GaiaSector.TabIndex = 110;
+            // 
+            // label48
+            // 
+            label48.AutoSize = true;
+            label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label48.Location = new System.Drawing.Point(63, 41);
+            label48.Name = "label48";
+            label48.Size = new System.Drawing.Size(69, 25);
+            label48.TabIndex = 111;
+            label48.Text = "Sector";
+            // 
+            // GaiaSpectral
+            // 
+            GaiaSpectral.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            GaiaSpectral.Location = new System.Drawing.Point(65, 382);
+            GaiaSpectral.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            GaiaSpectral.Name = "GaiaSpectral";
+            GaiaSpectral.Size = new System.Drawing.Size(100, 30);
+            GaiaSpectral.TabIndex = 112;
+            // 
+            // label50
+            // 
+            label50.AutoSize = true;
+            label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label50.Location = new System.Drawing.Point(63, 353);
+            label50.Name = "label50";
+            label50.Size = new System.Drawing.Size(134, 25);
+            label50.TabIndex = 113;
+            label50.Text = "Spectral Type";
+            // 
             // GalaxyXCord
             // 
             GalaxyXCord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -1231,10 +1355,9 @@
             Controls.Add(label25);
             Controls.Add(SaveBtn);
             Controls.Add(NewBtn);
-            Controls.Add(StarBox);
             Controls.Add(SysName);
             Controls.Add(label1);
-            Controls.Add(DatabseFileName);
+            Controls.Add(DatabaseFileName);
             Controls.Add(GetDBPath);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1248,6 +1371,8 @@
             StarTabControl.PerformLayout();
             SysObjectTab.ResumeLayout(false);
             SysObjectTab.PerformLayout();
+            GaiaDB.ResumeLayout(false);
+            GaiaDB.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
 
@@ -1256,12 +1381,10 @@
         #endregion
 
         private System.Windows.Forms.Button GetDBPath;
-        private System.Windows.Forms.OpenFileDialog DatabaseDiag;
-        private System.Windows.Forms.Label DatabseFileName;
+        private System.Windows.Forms.Label DatabaseFileName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox SysName;
         private System.Data.SQLite.SQLiteCommand sqLiteCommand1;
-        private System.Windows.Forms.CheckBox StarBox;
         private System.Windows.Forms.Button NewBtn;
         private System.Windows.Forms.Button SaveBtn;
         private System.Windows.Forms.Label label25;
@@ -1357,6 +1480,19 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox RaceRelig;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.FolderBrowserDialog DatabaseDiag;
+        private System.Windows.Forms.TabPage GaiaDB;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox GaiaTeff;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.TextBox GaiaName3;
+        private System.Windows.Forms.TextBox GaiaName2;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.TextBox GaiaSector;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.TextBox GaiaSpectral;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.CheckBox GaiaBinary;
     }
 }
 
