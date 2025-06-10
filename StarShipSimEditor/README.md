@@ -23,6 +23,6 @@ Include support for stars being added properly. - Started 05/06/2025
 
 Make it obvious when in clone mode. - Done 01/06/2025
 
-Cleanup Gaia database query to make it faster
+Cleanup Gaia database query to make it faster - Done 10/6/2025
 
-Integrate Gaia data query into custom systems.
+Integrate Gaia data query into custom systems. - Done 10/6/2025

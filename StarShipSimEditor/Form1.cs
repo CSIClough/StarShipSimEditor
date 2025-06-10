@@ -1,4 +1,9 @@
-﻿using System;
+﻿//using Nancy;
+using Nancy.Json;
+//using Newtonsoft.Json;
+//using Newtonsoft.Json.Linq;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
@@ -6,12 +11,21 @@ using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+//using System.Net.Http.Json;
+//using System.Text.Json;
+//using System.Text.Json.Nodes;
+//using System.Text.Json.Serialization;
+//using System.Text.Json.Serialization.Metadata;
 using System.Windows.Forms;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace StarShipSimEditor
 {
+
+    public class SysObject
+    {
+        public string Name { get; set; }
+    }
 
 
     public partial class Form1 : Form
@@ -64,6 +78,9 @@ namespace StarShipSimEditor
                 }
             }
         }
+
+
+
         public void getSystems(SQLiteConnection connection, string table, string NamingColumn)
         {
             getColumns(connection, table);
@@ -72,28 +89,23 @@ namespace StarShipSimEditor
             SQLiteDataReader reader;
             SQLiteCommand command;
             command = connection.CreateCommand();
-            command.CommandText = $"select DISTINCT {NamingColumn} from {table}";
+            command.CommandText = $"SELECT json_group_array( json_object('Name', ifNull({NamingColumn},'N/A'))    ) AS json_result FROM (select {NamingColumn} from {table})";
             reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                try
-                {
-                    if (!(((SysName.Items.Count % 1000000) == 0) && (SysName.Items.Count > 1)))
-                    {
-                        SysName.Items.Add(reader.GetString(0));
-                    }
-                    else
-                    {
-                        var response = MessageBox.Show("1 Million records have been loaded, do you want to continue?", "Large Data", MessageBoxButtons.YesNo);
-                        if (response == DialogResult.No)
-                        {
-                            break;
-                        }
 
-                    }
-                }
-                catch { }
-            }
+            reader.Read();
+            string jsondata = reader.GetString(0);
+            
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            SysObject[] systemobjects = js.Deserialize<SysObject[]>(jsondata);
+            jsondata = null;
+            
+
+            List<string> names = new List<string>();
+
+            var somelist = systemobjects.Select(s => new { s.Name }).Select(a => a.Name.ToString()).ToArray();
+
+            SysName.Items.AddRange(somelist);
+           
             if (SysName.Items.Contains(tmp))
             {
                 SysName.SelectedItem = tmp;
