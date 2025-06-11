@@ -1,7 +1,5 @@
-﻿//using Nancy;
+﻿
 using Nancy.Json;
-//using Newtonsoft.Json;
-//using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,33 +9,20 @@ using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-//using System.Net.Http.Json;
-//using System.Text.Json;
-//using System.Text.Json.Nodes;
-//using System.Text.Json.Serialization;
-//using System.Text.Json.Serialization.Metadata;
 using System.Windows.Forms;
-//using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace StarShipSimEditor
 {
-
-    public class SysObject
-    {
-        public string Name { get; set; }
-    }
-
-
     public partial class Form1 : Form
     {
         SQLiteConnection stars_customConnection = null;
         SQLiteConnection stars_2000lyConnection = null;
-        string gaiaStars = "stars_2000ly.db";
-        string customStars = "stars_custom.db";
+        readonly string gaiaStars = "stars_2000ly.db";
+        readonly string customStars = "stars_custom.db";
         private string databasePath;
         private List<string> columns;
         private string lookuptable = "";
-
         private string column_name = "SystemName";
         int starsSelected = 0;
 
@@ -49,7 +34,7 @@ namespace StarShipSimEditor
 
         }
 
-        private SQLiteConnection openDatabase(string dbname)
+        private SQLiteConnection OpenDatabase(string dbname)
         {
 
             var connection = new SQLiteConnection($"Data Source={databasePath + "\\" + dbname};Version=3");
@@ -57,17 +42,15 @@ namespace StarShipSimEditor
             return connection;
         }
 
-        private void getColumns(SQLiteConnection connection, string table)
+        private void GetColumns(SQLiteConnection connection)
         {
-            columns = new List<string>();
+            columns = [];
 
             SQLiteDataReader reader;
             SQLiteCommand command;
             command = connection.CreateCommand();
             command.CommandText = $"select * from {lookuptable}";
             reader = command.ExecuteReader();
-            var columncount = reader.FieldCount;
-
             var schemaTable = reader.GetSchemaTable();
             if (schemaTable != null)
             {
@@ -81,9 +64,9 @@ namespace StarShipSimEditor
 
 
 
-        public void getSystems(SQLiteConnection connection, string table, string NamingColumn)
+        public void GetSystems(SQLiteConnection connection, string table, string NamingColumn)
         {
-            getColumns(connection, table);
+            GetColumns(connection);
             var tmp = SysName.SelectedItem;
             SysName.Items.Clear();
             SQLiteDataReader reader;
@@ -94,18 +77,19 @@ namespace StarShipSimEditor
 
             reader.Read();
             string jsondata = reader.GetString(0);
-            
-            JavaScriptSerializer js = new JavaScriptSerializer();
+            reader = null;
+            JavaScriptSerializer js = new();
             SysObject[] systemobjects = js.Deserialize<SysObject[]>(jsondata);
             jsondata = null;
-            
-
-            List<string> names = new List<string>();
+            GC.Collect();
 
             var somelist = systemobjects.Select(s => new { s.Name }).Select(a => a.Name.ToString()).ToArray();
+            systemobjects = null;
+            GC.Collect();
 
             SysName.Items.AddRange(somelist);
-           
+            somelist = null;
+            GC.Collect();
             if (SysName.Items.Contains(tmp))
             {
                 SysName.SelectedItem = tmp;
@@ -121,32 +105,32 @@ namespace StarShipSimEditor
         {
 
 
-            stars_customConnection = openDatabase(customStars);
-            stars_2000lyConnection = openDatabase(gaiaStars);
+            stars_customConnection = OpenDatabase(customStars);
+            stars_2000lyConnection = OpenDatabase(gaiaStars);
             SysName.Items.Clear();
 
             if (starsSelected == 1)
             {
                 lookuptable = StarSystemTbl;
                 column_name = "SystemName";
-                getColumns(stars_customConnection, column_name);
-                getSystems(stars_customConnection, lookuptable, column_name);
+                GetColumns(stars_customConnection);
+                GetSystems(stars_customConnection, lookuptable, column_name);
 
             }
             else if (starsSelected == 0)
             {
                 lookuptable = CelestialObjecttbl;
                 column_name = "Name_L2";
-                getColumns(stars_customConnection, column_name);
-                getSystems(stars_customConnection, lookuptable, column_name);
+                GetColumns(stars_customConnection);
+                GetSystems(stars_customConnection, lookuptable, column_name);
 
             }
             else
             {
                 lookuptable = "Stars";
                 column_name = "Name1";
-                getColumns(stars_2000lyConnection, column_name);
-                getSystems(stars_2000lyConnection, lookuptable, column_name);
+                GetColumns(stars_2000lyConnection);
+                GetSystems(stars_2000lyConnection, lookuptable, column_name);
 
             }
         }
@@ -185,28 +169,28 @@ namespace StarShipSimEditor
                 NewBtn.BackColor = Color.DimGray;
 
                 reader.Read();
-                GalaxyXCord.Text = readData(reader, ColumnX);
-                GalaxyYCord.Text = readData(reader, ColumnY);
-                GalaxyZCord.Text = readData(reader, ColumnZ);
-                SysPitch.Text = readData(reader, ColumnStarPitch);
-                SysYaw.Text = readData(reader, ColumnStarYaw);
-                StarTemp.Text = readData(reader, ColumnStarKelvin);
-                StarRadius.Text = readData(reader, ColumnStarRadius);
-                StarMass.Text = readData(reader, ColumnStarMass);
-                StarAge.Text = readData(reader, ColumnStarAge);
-                StarHydro.Text = readData(reader, ColumnStarHydro);
-                StarHelium.Text = readData(reader, ColumnStarHelium);
-                StarMetals.Text = readData(reader, ColumnStarMetals);
-                KuiperStart.Text = readData(reader, ColumnStarKuipStart);
-                KuiperEnd.Text = readData(reader, ColumnStarKuipEnd);
-                RaceDesc.Text = readData(reader, ColumnStarFlav);
-                RaceName.Text = readData(reader, ColumnStarRaceName);
-                RaceTech.Text = readData(reader, ColumnStarRaceTechL);
-                RaceGov.Text = readData(reader, ColumnStarRaceGov);
-                RacePhys.Text = readData(reader, ColumnStarRacePhys);
-                RaceRelig.Text = readData(reader, ColumnStarRaceRel);
-                RaceAgg.Text = readData(reader, ColumnStarRaceAgg);
-                RaceXen.Text = readData(reader, ColumnStarRaceXen);
+                GalaxyXCord.Text = ReadData(reader, ColumnX);
+                GalaxyYCord.Text = ReadData(reader, ColumnY);
+                GalaxyZCord.Text = ReadData(reader, ColumnZ);
+                SysPitch.Text = ReadData(reader, ColumnStarPitch);
+                SysYaw.Text = ReadData(reader, ColumnStarYaw);
+                StarTemp.Text = ReadData(reader, ColumnStarKelvin);
+                StarRadius.Text = ReadData(reader, ColumnStarRadius);
+                StarMass.Text = ReadData(reader, ColumnStarMass);
+                StarAge.Text = ReadData(reader, ColumnStarAge);
+                StarHydro.Text = ReadData(reader, ColumnStarHydro);
+                StarHelium.Text = ReadData(reader, ColumnStarHelium);
+                StarMetals.Text = ReadData(reader, ColumnStarMetals);
+                KuiperStart.Text = ReadData(reader, ColumnStarKuipStart);
+                KuiperEnd.Text = ReadData(reader, ColumnStarKuipEnd);
+                RaceDesc.Text = ReadData(reader, ColumnStarFlav);
+                RaceName.Text = ReadData(reader, ColumnStarRaceName);
+                RaceTech.Text = ReadData(reader, ColumnStarRaceTechL);
+                RaceGov.Text = ReadData(reader, ColumnStarRaceGov);
+                RacePhys.Text = ReadData(reader, ColumnStarRacePhys);
+                RaceRelig.Text = ReadData(reader, ColumnStarRaceRel);
+                RaceAgg.Text = ReadData(reader, ColumnStarRaceAgg);
+                RaceXen.Text = ReadData(reader, ColumnStarRaceXen);
             }
             else if (starsSelected == 0)
             {
@@ -216,42 +200,42 @@ namespace StarShipSimEditor
                 NewBtn.BackColor = Color.DimGray;
 
                 reader.Read();
-                GalaxyXCord.Text = readData(reader, ColumnX);
-                GalaxyYCord.Text = readData(reader, ColumnY);
-                GalaxyZCord.Text = readData(reader, ColumnZ);
+                GalaxyXCord.Text = ReadData(reader, ColumnX);
+                GalaxyYCord.Text = ReadData(reader, ColumnY);
+                GalaxyZCord.Text = ReadData(reader, ColumnZ);
 
-                sysobID = Convert.ToInt16(readData(reader, "ID"));
+                sysobID = Convert.ToInt16(ReadData(reader, "ID"));
 
-                MajorAxisBox.Text = readData(reader, ColumnSemiMajorAxis);
-                MinorAxisBox.Text = readData(reader, ColumnSemiMinorAxis);
-                InclanationScroll.Value = Convert.ToInt32(readData(reader, ColumnInclination));
+                MajorAxisBox.Text = ReadData(reader, ColumnSemiMajorAxis);
+                MinorAxisBox.Text = ReadData(reader, ColumnSemiMinorAxis);
+                InclanationScroll.Value = Convert.ToInt32(ReadData(reader, ColumnInclination));
                 InclanationVal.Text = InclanationScroll.Value.ToString();
-                OrbitalScroll.Value = Convert.ToInt32(readData(reader, ColumnOrbitPosition));
+                OrbitalScroll.Value = Convert.ToInt32(ReadData(reader, ColumnOrbitPosition));
                 OrbitalPosVal.Text = OrbitalScroll.Value.ToString();
-                PlanetTypeBox.Text = readData(reader, ColumnPlanetType);
-                RadiusBx.Text = readData(reader, ColumnRadius);
-                MassBx.Text = readData(reader, ColumnMass);
-                TiltBox.Text = readData(reader, ColumnTilt);
-                if (readData(reader, ColumnAtmosphere) == "1")
+                PlanetTypeBox.Text = ReadData(reader, ColumnPlanetType);
+                RadiusBx.Text = ReadData(reader, ColumnRadius);
+                MassBx.Text = ReadData(reader, ColumnMass);
+                TiltBox.Text = ReadData(reader, ColumnTilt);
+                if (ReadData(reader, ColumnAtmosphere) == "1")
                 { AtmosCheckBox.Checked = true; }
                 else
                 { AtmosCheckBox.Checked = false; }
-                AtmosOpacBox.Text = readData(reader, ColumnAtmosphereOpacity);
-                AtmosHue.Text = readData(reader, ColumnAtmosphereHue);
-                AtmosTemp.Text = readData(reader, ColumnAtmosphereTemp);
-                HydrogenBox.Text = (Convert.ToUInt16(readData(reader, ColumnHydrogen)) * 100).ToString();
-                HeliumBox.Text = (Convert.ToUInt16(readData(reader, ColumnHelium)) * 100).ToString();
-                MethaneBox.Text = (Convert.ToUInt16(readData(reader, ColumnMethane)) * 100).ToString();
-                OtherGasBox.Text = (Convert.ToUInt16(readData(reader, ColumnOther)) * 100).ToString();
-                if (readData(reader, ColumnRing) == "1")
+                AtmosOpacBox.Text = ReadData(reader, ColumnAtmosphereOpacity);
+                AtmosHue.Text = ReadData(reader, ColumnAtmosphereHue);
+                AtmosTemp.Text = ReadData(reader, ColumnAtmosphereTemp);
+                HydrogenBox.Text = (Convert.ToUInt16(ReadData(reader, ColumnHydrogen)) * 100).ToString();
+                HeliumBox.Text = (Convert.ToUInt16(ReadData(reader, ColumnHelium)) * 100).ToString();
+                MethaneBox.Text = (Convert.ToUInt16(ReadData(reader, ColumnMethane)) * 100).ToString();
+                OtherGasBox.Text = (Convert.ToUInt16(ReadData(reader, ColumnOther)) * 100).ToString();
+                if (ReadData(reader, ColumnRing) == "1")
                 { RingChkBox.Checked = true; }
                 else
                 { RingChkBox.Checked = false; }
-                RingSeedBox.Text = readData(reader, ColumnRingSeed);
-                StarClass.SelectedItem = readData(reader, ColumnName_L0);
-                SysObJType.SelectedItem = readData(reader, ColumnName_L1);
-                ObjFriendlyName.Text = readData(reader, ColumnName_L3);
-                DescriptionBox.Text = readData(reader, ColumnFlavourText);
+                RingSeedBox.Text = ReadData(reader, ColumnRingSeed);
+                StarClass.SelectedItem = ReadData(reader, ColumnName_L0);
+                SysObJType.SelectedItem = ReadData(reader, ColumnName_L1);
+                ObjFriendlyName.Text = ReadData(reader, ColumnName_L3);
+                DescriptionBox.Text = ReadData(reader, ColumnFlavourText);
 
                 if (SearchStarForObject(SysName.SelectedItem.ToString()))
                 {
@@ -272,17 +256,17 @@ namespace StarShipSimEditor
                 NewBtn.BackColor = Color.DimGray;
 
                 reader.Read();
-                GalaxyXCord.Text = readData(reader, ColumnX);
-                GalaxyYCord.Text = readData(reader, ColumnY);
-                GalaxyZCord.Text = readData(reader, ColumnZ);
-                GaiaSector.Text = readData(reader, ColumnGaiaSector);
-                GaiaName2.Text = readData(reader, ColumnGaiaName2);
-                GaiaName3.Text = readData(reader, ColumnGaiaName3);
-                GaiaTeff.Text = readData(reader, ColumnGaiaTeff);
-                GaiaSpectral.Text = readData(reader, ColumnGaiaSprectral);
+                GalaxyXCord.Text = ReadData(reader, ColumnX);
+                GalaxyYCord.Text = ReadData(reader, ColumnY);
+                GalaxyZCord.Text = ReadData(reader, ColumnZ);
+                GaiaSector.Text = ReadData(reader, ColumnGaiaSector);
+                GaiaName2.Text = ReadData(reader, ColumnGaiaName2);
+                GaiaName3.Text = ReadData(reader, ColumnGaiaName3);
+                GaiaTeff.Text = ReadData(reader, ColumnGaiaTeff);
+                GaiaSpectral.Text = ReadData(reader, ColumnGaiaSprectral);
 
 
-                if (readData(reader, ColumnGaiaBinary) == "1") { GaiaBinary.Checked = true; } else { GaiaBinary.Checked = false; }
+                if (ReadData(reader, ColumnGaiaBinary) == "1") { GaiaBinary.Checked = true; } else { GaiaBinary.Checked = false; }
 
 
             }
@@ -313,7 +297,7 @@ namespace StarShipSimEditor
             return false;
         }
 
-        private string readData(SQLiteDataReader reader, string column_name)
+        private string ReadData(SQLiteDataReader reader, string column_name)
         {
             try
             {
@@ -331,7 +315,7 @@ namespace StarShipSimEditor
             string steampath = "C:\\Program Files (x86)\\Steam\\SteamApps\\libraryfolders.vdf";
             string targetloc = "steamapps\\common\\Starship Simulator Dev Playtest\\StarshipSimulator\\Content";
             var steamcontents = File.ReadAllLines(steampath);
-            List<string> steampaths = new List<string>();
+            List<string> steampaths = [];
             foreach (var item in steamcontents)
             {
                 if (item.Contains("path"))
@@ -364,8 +348,8 @@ namespace StarShipSimEditor
             getDBFolder();
 
             TabControlSys.SelectedIndex = 1;
-            StarClass.Items.AddRange(new string[] { StarTypes.GClass, StarTypes.MClass, StarTypes.Unknown });
-            SysObJType.Items.AddRange(new string[] { BodyTypes.Rocky_Planet, BodyTypes.Dwarf_Planet, BodyTypes.Gas_Giant, BodyTypes.G2V_Class_Star, BodyTypes.M2V_Class_Star, BodyTypes.Class_IV_Gas_Giant, BodyTypes.Earth_Analoge });
+            StarClass.Items.AddRange([StarTypes.GClass, StarTypes.MClass, StarTypes.Unknown]);
+            SysObJType.Items.AddRange([BodyTypes.Rocky_Planet, BodyTypes.Dwarf_Planet, BodyTypes.Gas_Giant, BodyTypes.G2V_Class_Star, BodyTypes.M2V_Class_Star, BodyTypes.Class_IV_Gas_Giant, BodyTypes.Earth_Analoge]);
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
@@ -503,7 +487,7 @@ values
         private void HeliumBox_TextChanged(object sender, EventArgs e) => HeliumBox.Text = PercentageValidate(HeliumBox.Text);
         private void MethaneBox_TextChanged(object sender, EventArgs e) => MethaneBox.Text = PercentageValidate(MethaneBox.Text);
         private void OtherGasBox_TextChanged(object sender, EventArgs e) => OtherGasBox.Text = PercentageValidate(OtherGasBox.Text);
-        private string PercentageValidate(string ToCheck)
+        private static string PercentageValidate(string ToCheck)
         {
             string ReturnableString = "0";
             if (ToCheck == "") { ReturnableString = "0"; return ReturnableString; }
@@ -537,7 +521,7 @@ values
         private void RadiusBx_TextChanged(object sender, EventArgs e) => RadiusBx.Text = DecimalNumberValidation(RadiusBx.Text);
         private void MassBx_TextChanged(object sender, EventArgs e) => MassBx.Text = DecimalNumberValidation(MassBx.Text);
 
-        private string DecimalNumberValidation(string Number)
+        private static string DecimalNumberValidation(string Number)
         {
             try
             {
@@ -553,7 +537,7 @@ values
         private void InclanationVal_TextChanged(object sender, EventArgs e) => InclanationVal.Text = IntNumberValidation(InclanationVal.Text);
         private void TiltBox_TextChanged(object sender, EventArgs e) => TiltBox.Text = IntNumberValidation(TiltBox.Text);
 
-        private string IntNumberValidation(string Number)
+        private static string IntNumberValidation(string Number)
         {
             try
             {
@@ -583,7 +567,7 @@ values
                 starsSelected = 1;
                 lookuptable = StarSystemTbl;
                 column_name = "SystemName";
-                getSystems(stars_customConnection, lookuptable, column_name);
+                GetSystems(stars_customConnection, lookuptable, column_name);
             }
             else if (TabControlSys.SelectedTab.Name == "GaiaDB")
             {
@@ -593,7 +577,7 @@ values
                     starsSelected = 2;
                     lookuptable = "Stars";
                     column_name = "Name1";
-                    getSystems(stars_2000lyConnection, lookuptable, column_name);
+                    GetSystems(stars_2000lyConnection, lookuptable, column_name);
                 }
             }
             else
@@ -601,12 +585,17 @@ values
                 starsSelected = 0;
                 lookuptable = CelestialObjecttbl;
                 column_name = "Name_L2";
-                getSystems(stars_customConnection, lookuptable, column_name);
+                GetSystems(stars_customConnection, lookuptable, column_name);
             }
 
 
         }
 
     }
+    public class SysObject
+    {
+        public string Name { get; set; }
+    }
+
 }
 
