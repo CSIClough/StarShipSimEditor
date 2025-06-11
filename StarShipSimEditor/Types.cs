@@ -28,9 +28,6 @@ namespace StarShipSimEditor
     }
     public partial class Form1 : Form
     {
-        //
-        string CelestialObjecttbl = "CelestialObjects";
-        //
         string ColumnX = "X";
         string ColumnY = "Y";
         string ColumnZ = "Z";
@@ -58,11 +55,6 @@ namespace StarShipSimEditor
         string ColumnName_L3 = "Name_L3";
         string ColumnFlavourText = "FlavourText";
 
-
-        //
-        string StarSystemTbl = "StarSystems";
-        //
-        string ColumnStarSysName = "SystemName";
         string ColumnStarPitch = "SystemPitch";
         string ColumnStarYaw = "SystemYaw";
         string ColumnStarKelvin = "StarKelvin";

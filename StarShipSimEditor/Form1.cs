@@ -36,8 +36,7 @@ namespace StarShipSimEditor
         string customStars = "stars_custom.db";
         private string databasePath;
         private List<string> columns;
-        private string lookuptable = "";
-
+        private string lookuptable = "StarSystems";
         private string column_name = "SystemName";
         int starsSelected = 0;
 
@@ -127,7 +126,7 @@ namespace StarShipSimEditor
 
             if (starsSelected == 1)
             {
-                lookuptable = StarSystemTbl;
+                lookuptable = "StarSystems";
                 column_name = "SystemName";
                 getColumns(stars_customConnection, column_name);
                 getSystems(stars_customConnection, lookuptable, column_name);
@@ -135,7 +134,7 @@ namespace StarShipSimEditor
             }
             else if (starsSelected == 0)
             {
-                lookuptable = CelestialObjecttbl;
+                lookuptable = "CelestialObjects";
                 column_name = "Name_L2";
                 getColumns(stars_customConnection, column_name);
                 getSystems(stars_customConnection, lookuptable, column_name);
@@ -252,15 +251,6 @@ namespace StarShipSimEditor
                 SysObJType.SelectedItem = readData(reader, ColumnName_L1);
                 ObjFriendlyName.Text = readData(reader, ColumnName_L3);
                 DescriptionBox.Text = readData(reader, ColumnFlavourText);
-
-                if (SearchStarForObject(SysName.SelectedItem.ToString()))
-                {
-                    isStar.Checked = true;
-                }
-                else
-                {
-                    isStar.Checked = false;
-                }
             }
             else
             {
@@ -286,31 +276,6 @@ namespace StarShipSimEditor
 
 
             }
-        }
-
-        private bool SearchStarForObject(string SearchObject)
-        {
-            SQLiteCommand command;
-            command = stars_customConnection.CreateCommand();
-            command.CommandText = $"select \"{ColumnStarSysName}\" from \"{StarSystemTbl}\" where \"{ColumnStarSysName}\" = \"{SearchObject}\";";
-            var item = command.ExecuteReader();
-            item.Read();
-
-            string value;
-            try
-            {
-                value = item.GetValue(0).ToString();
-            }
-            catch
-            {
-                value = "";
-            }
-
-            if (value.Length > 0)
-            {
-                return true;
-            }
-            return false;
         }
 
         private string readData(SQLiteDataReader reader, string column_name)
@@ -370,53 +335,14 @@ namespace StarShipSimEditor
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            SQLiteCommand command;
-            command = stars_customConnection.CreateCommand();
             if (starsSelected == 1)
             {
                 //Do Stuff here to save Star Systems
-                if (SearchStarForObject(SysName.Text))
-                {
-                    command.CommandText = $@"
-update {StarSystemTbl}
-set 
-{ColumnStarSysName} = '{SysName.Text}',
-{ColumnStarYaw} = {Convert.ToUInt64(SysYaw.Text)},
-{ColumnStarKelvin} = {Convert.ToUInt64(StarTemp.Text)},
-{ColumnStarRadius} = {Convert.ToUInt64(StarRadius.Text)},
-{ColumnStarMass} = {Convert.ToUInt64(StarMass.Text)},
-{ColumnStarAge} = {Convert.ToUInt64(StarAge.Text)},
-{ColumnStarHydro} = {Convert.ToUInt64(StarHydro.Text)},
-{ColumnStarHelium} = {Convert.ToUInt64(StarHelium.Text)},
-{ColumnStarMetals} = {Convert.ToUInt64(StarMetals.Text)},
-{ColumnStarKuipStart} = {Convert.ToUInt64(KuiperStart.Text)},
-{ColumnStarKuipEnd} = {Convert.ToUInt64(KuiperEnd.Text)},
-{ColumnFlavourText} = '{RaceDesc.Text}',
-{ColumnStarRaceName} = '{RaceName.Text}',
-{ColumnStarRaceTechL} = {RaceTech.Text},
-{ColumnStarRaceGov} = {RaceGov.Text},
-{ColumnStarRacePhys} = {RacePhys.Text},
-{ColumnStarRaceRel} = {RaceRelig.Text},
-{ColumnStarRaceAgg} = {RaceAgg.Text},
-{ColumnStarRaceXen} = {RaceXen.Text}
-where ({ColumnX} = {GalaxyXCord.Text}) and ({ColumnY} = {GalaxyYCord.Text}) and ({ColumnZ} = {GalaxyZCord.Text})
-;";
-                }
-                else
-                {
-                    command.CommandText = $@"
-insert into {StarSystemTbl}
-({ColumnStarSysName},{ColumnX},{ColumnY},{ColumnZ},{ColumnStarYaw},{ColumnStarKelvin},{ColumnStarRadius},{ColumnStarMass},{ColumnStarAge},{ColumnStarHydro},{ColumnStarHelium},{ColumnStarMetals},{ColumnStarKuipStart},{ColumnStarKuipEnd},{ColumnFlavourText},{ColumnStarRaceName},{ColumnStarRaceTechL},{ColumnStarRaceGov},{ColumnStarRacePhys},{ColumnStarRaceRel},{ColumnStarRaceAgg},{ColumnStarRaceXen})
-Values 
-('{SysName.Text}',{GalaxyXCord.Text},{GalaxyYCord.Text},{GalaxyZCord.Text},{Convert.ToUInt64(SysYaw.Text)},{Convert.ToUInt64(StarTemp.Text)},{Convert.ToUInt64(StarRadius.Text)},{Convert.ToUInt64(StarMass.Text)},{Convert.ToUInt64(StarAge.Text)},{Convert.ToUInt64(StarHydro.Text)},{Convert.ToUInt64(StarHelium.Text)},{Convert.ToUInt64(StarMetals.Text)},{Convert.ToUInt64(KuiperStart.Text)},{Convert.ToUInt64(KuiperEnd.Text)},'{RaceDesc.Text}','{RaceName.Text}',{RaceTech.Text},{RaceGov.Text},{RacePhys.Text},{RaceRelig.Text},{RaceAgg.Text},{RaceXen.Text})
-;
-";
-                }
-                command.ExecuteNonQuery();
             }
             else if (starsSelected == 0)
             {
-
+                SQLiteCommand command;
+                command = stars_customConnection.CreateCommand();
                 int atmosval = 0;
                 if (AtmosCheckBox.Checked) { atmosval = 1; }
                 int ringval = 0;
@@ -425,17 +351,17 @@ Values
                 if (sysobID == -1)
                 {
                     command.CommandText = $@"
-insert into {CelestialObjecttbl}
+insert into CelestialObjects
 (ID,{ColumnName_L2},{ColumnX},{ColumnY},{ColumnZ},{ColumnSemiMajorAxis},{ColumnSemiMinorAxis},{ColumnInclination},{ColumnOrbitPosition},{ColumnPlanetType},{ColumnRadius},{ColumnMass},{ColumnTilt},'{ColumnAtmosphere}',{ColumnAtmosphereOpacity},{ColumnAtmosphereHue},{ColumnAtmosphereTemp},{ColumnHydrogen},{ColumnHelium},{ColumnMethane},{ColumnOther},'{ColumnRing}',{ColumnRingSeed},{ColumnName_L0},{ColumnName_L1},{ColumnName_L3},{ColumnFlavourText})
 values
-(IFNULL((Select MAX(ID) From {CelestialObjecttbl}),0) + 1,'{SysName.Text}',{GalaxyXCord.Text},{GalaxyYCord.Text},{GalaxyZCord.Text},{MajorAxisBox.Text},{MinorAxisBox.Text},{InclanationScroll.Value},{OrbitalScroll.Value},{PlanetTypeBox.Text},{RadiusBx.Text},{MassBx.Text},{TiltBox.Text},{atmosval},{AtmosOpacBox.Text},{AtmosHue.Text},{AtmosTemp.Text},{HydrogenBox.Text},{HeliumBox.Text},{MethaneBox.Text},{OtherGasBox.Text},{ringval},{RingSeedBox.Text},'{StarClass.SelectedItem}','{SysObJType.SelectedItem}','{ObjFriendlyName.Text}','{DescriptionBox.Text}')
+(IFNULL((Select MAX(ID) From CelestialObjects),0) + 1,'{SysName.Text}',{GalaxyXCord.Text},{GalaxyYCord.Text},{GalaxyZCord.Text},{MajorAxisBox.Text},{MinorAxisBox.Text},{InclanationScroll.Value},{OrbitalScroll.Value},{PlanetTypeBox.Text},{RadiusBx.Text},{MassBx.Text},{TiltBox.Text},{atmosval},{AtmosOpacBox.Text},{AtmosHue.Text},{AtmosTemp.Text},{HydrogenBox.Text},{HeliumBox.Text},{MethaneBox.Text},{OtherGasBox.Text},{ringval},{RingSeedBox.Text},'{StarClass.SelectedItem}','{SysObJType.SelectedItem}','{ObjFriendlyName.Text}','{DescriptionBox.Text}')
 ;
 ";
                 }
                 else
                 {
                     command.CommandText = $@"
-update {CelestialObjecttbl}
+update CelestialObjects
 set 
 {ColumnName_L2} = '{SysName.Text}',
 {ColumnX} = {GalaxyXCord.Text},
@@ -453,10 +379,10 @@ set
 {ColumnAtmosphereOpacity} = {AtmosOpacBox.Text},
 {ColumnAtmosphereHue} = {AtmosHue.Text},
 {ColumnAtmosphereTemp} = {AtmosTemp.Text},
-{ColumnHydrogen} = {(Convert.ToUInt64(HydrogenBox.Text) / 100)},
-{ColumnHelium} = {(Convert.ToUInt64(HeliumBox.Text) / 100)},
-{ColumnMethane} = {(Convert.ToUInt64(MethaneBox.Text) / 100)},
-{ColumnOther} = {(Convert.ToUInt64(OtherGasBox.Text) / 100)},
+{ColumnHydrogen} = {(Convert.ToUInt16(HydrogenBox.Text) / 100)},
+{ColumnHelium} = {(Convert.ToUInt16(HeliumBox.Text) / 100)},
+{ColumnMethane} = {(Convert.ToUInt16(MethaneBox.Text) / 100)},
+{ColumnOther} = {(Convert.ToUInt16(OtherGasBox.Text) / 100)},
 '{ColumnRing}' = {ringval},
 {ColumnRingSeed} = {RingSeedBox.Text},
 {ColumnName_L0} = '{StarClass.SelectedItem}',
@@ -473,22 +399,17 @@ where ID = {sysobID}
                     command.ExecuteNonQuery();
                 }
                 catch
-                { }
-
-                if (isStar.Checked)
                 {
-                    if (!SearchStarForObject(SysName.SelectedItem.ToString()))
+                    try
                     {
-                        command.CommandText = $@"
 
-insert into {StarSystemTbl}
-({ColumnX},{ColumnY},{ColumnZ})
-values
-('{GalaxyXCord.Text}','{GalaxyYCord.Text}','{GalaxyYCord}')
-;
-";
                         command.ExecuteNonQuery();
                     }
+                    catch
+                    {
+
+                    }
+
                 }
             }
         }
@@ -581,7 +502,7 @@ values
             if (TabControlSys.SelectedTab.Name == "StarTabControl")
             {
                 starsSelected = 1;
-                lookuptable = StarSystemTbl;
+                lookuptable = "StarSystems";
                 column_name = "SystemName";
                 getSystems(stars_customConnection, lookuptable, column_name);
             }
@@ -599,7 +520,7 @@ values
             else
             {
                 starsSelected = 0;
-                lookuptable = CelestialObjecttbl;
+                lookuptable = "CelestialObjects";
                 column_name = "Name_L2";
                 getSystems(stars_customConnection, lookuptable, column_name);
             }

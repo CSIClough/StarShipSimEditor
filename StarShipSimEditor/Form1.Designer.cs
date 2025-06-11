@@ -77,7 +77,6 @@
             StarMetals = new System.Windows.Forms.TextBox();
             label31 = new System.Windows.Forms.Label();
             SysObjectTab = new System.Windows.Forms.TabPage();
-            isStar = new System.Windows.Forms.CheckBox();
             DescriptionBox = new System.Windows.Forms.TextBox();
             TiltScrollBar = new System.Windows.Forms.HScrollBar();
             label22 = new System.Windows.Forms.Label();
@@ -654,7 +653,6 @@
             // 
             // SysObjectTab
             // 
-            SysObjectTab.Controls.Add(isStar);
             SysObjectTab.Controls.Add(DescriptionBox);
             SysObjectTab.Controls.Add(TiltScrollBar);
             SysObjectTab.Controls.Add(label22);
@@ -709,18 +707,6 @@
             SysObjectTab.UseVisualStyleBackColor = true;
             SysObjectTab.TextChanged += MethaneBox_TextChanged;
             // 
-            // isStar
-            // 
-            isStar.AutoSize = true;
-            isStar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            isStar.Location = new System.Drawing.Point(16, 16);
-            isStar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            isStar.Name = "isStar";
-            isStar.Size = new System.Drawing.Size(101, 29);
-            isStar.TabIndex = 111;
-            isStar.Text = "Is Star?";
-            isStar.UseVisualStyleBackColor = true;
-            // 
             // DescriptionBox
             // 
             DescriptionBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -740,7 +726,6 @@
             TiltScrollBar.Name = "TiltScrollBar";
             TiltScrollBar.Size = new System.Drawing.Size(390, 21);
             TiltScrollBar.TabIndex = 110;
-            TiltScrollBar.Scroll += TiltScrollBar_Scroll;
             // 
             // label22
             // 
@@ -896,7 +881,6 @@
             OrbitalScroll.Name = "OrbitalScroll";
             OrbitalScroll.Size = new System.Drawing.Size(390, 21);
             OrbitalScroll.TabIndex = 72;
-            OrbitalScroll.Scroll += OrbitalScroll_Scroll;
             // 
             // OrbitalPosVal
             // 
@@ -945,7 +929,6 @@
             InclanationScroll.Name = "InclanationScroll";
             InclanationScroll.Size = new System.Drawing.Size(390, 21);
             InclanationScroll.TabIndex = 75;
-            InclanationScroll.Scroll += InclanationScroll_Scroll;
             // 
             // RingSeedBox
             // 
@@ -1510,7 +1493,6 @@
         private System.Windows.Forms.TextBox GaiaSpectral;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.CheckBox GaiaBinary;
-        private System.Windows.Forms.CheckBox isStar;
     }
 }
 
